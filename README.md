@@ -117,14 +117,51 @@ The timeline will display with:
 
 ### Customization
 
-You can customize the appearance by modifying the `common/common.scss` file:
+After installing the component, you can customize the timeline colors in the Discourse admin panel:
 
-**Change gradient colors:**
-```scss
-.qingwa-timelines::before {
-  background: linear-gradient(to bottom, #your-start-color, #your-end-color);
-}
-```
+1. Go to **Admin** → **Customize** → **Themes**
+2. Select your active theme and click **Edit CSS/HTML**
+3. Find **discourse-qingwa-timelines** in the **Theme Components** section
+4. Click **Settings**
+
+#### Available Settings:
+
+- **timeline_gradient_start**: Gradient line start color (top), default `#ff7a18`
+- **timeline_gradient_end**: Gradient line end color (bottom), default `#ffb800`
+- **timeline_heading_color**: Heading text color, default `#d96d14`
+- **timeline_dot_color**: Timeline node dot color, default `#ff7a18`
+- **timeline_heading_color_dark**: Heading color in dark mode, default `#ff9854`
+- **timeline_dot_border_color_dark**: Dot border color in dark mode (leave empty to use theme default)
+
+#### Example Color Schemes:
+
+**Blue Theme:**
+- Gradient start: `#1e90ff`
+- Gradient end: `#00bfff`
+- Heading color: `#1873cc`
+- Dot color: `#1e90ff`
+
+**Green Theme:**
+- Gradient start: `#2ecc71`
+- Gradient end: `#27ae60`
+- Heading color: `#229954`
+- Dot color: `#2ecc71`
+
+**Purple Theme:**
+- Gradient start: `#9b59b6`
+- Gradient end: `#8e44ad`
+- Heading color: `#7d3c98`
+- Dot color: `#9b59b6`
+
+**Red/Pink Theme:**
+- Gradient start: `#e74c3c`
+- Gradient end: `#c0392b`
+- Heading color: `#a93226`
+- Dot color: `#e74c3c`
+
+#### Advanced Customization
+
+For more advanced styling, you can edit the `common/common.scss` file directly:
 
 **Adjust spacing:**
 ```scss
@@ -281,16 +318,53 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 - 适当的间距和排版
 - 支持标题、段落、列表等 Markdown 元素
 
-### 自定义样式
+### 自定义配置
 
-您可以通过修改 `common/common.scss` 文件来自定义外观：
+安装组件后，您可以在 Discourse 后台自定义时间轴的颜色：
 
-**更改渐变颜色：**
-```scss
-.qingwa-timelines::before {
-  background: linear-gradient(to bottom, #起始颜色, #结束颜色);
-}
-```
+1. 进入 **Admin** → **Customize** → **Themes**
+2. 选择已安装的主题，点击 **Edit CSS/HTML**
+3. 在 **Theme Components** 中找到 **discourse-qingwa-timelines**
+4. 点击 **Settings**
+
+#### 可配置项：
+
+- **timeline_gradient_start**: 渐变线起始色（顶部），默认 `#ff7a18`
+- **timeline_gradient_end**: 渐变线结束色（底部），默认 `#ffb800`
+- **timeline_heading_color**: 标题文字颜色，默认 `#d96d14`
+- **timeline_dot_color**: 节点圆点颜色，默认 `#ff7a18`
+- **timeline_heading_color_dark**: 深色模式下的标题颜色，默认 `#ff9854`
+- **timeline_dot_border_color_dark**: 深色模式下的圆点边框颜色（留空则使用主题默认）
+
+#### 示例配色方案：
+
+**蓝色系：**
+- 渐变起始: `#1e90ff`
+- 渐变结束: `#00bfff`
+- 标题颜色: `#1873cc`
+- 圆点颜色: `#1e90ff`
+
+**绿色系：**
+- 渐变起始: `#2ecc71`
+- 渐变结束: `#27ae60`
+- 标题颜色: `#229954`
+- 圆点颜色: `#2ecc71`
+
+**紫色系：**
+- 渐变起始: `#9b59b6`
+- 渐变结束: `#8e44ad`
+- 标题颜色: `#7d3c98`
+- 圆点颜色: `#9b59b6`
+
+**红/粉色系：**
+- 渐变起始: `#e74c3c`
+- 渐变结束: `#c0392b`
+- 标题颜色: `#a93226`
+- 圆点颜色: `#e74c3c`
+
+#### 高级自定义
+
+如需更高级的样式调整，您可以直接编辑 `common/common.scss` 文件：
 
 **调整间距：**
 ```scss
@@ -348,6 +422,7 @@ discourse-qingwa-timelines/
 │           └── qingwa-timelines.js.es6
 ├── common/
 │   └── common.scss
+├── settings.yml
 ├── about.json
 ├── README.md
 └── LICENSE
@@ -361,6 +436,13 @@ discourse-qingwa-timelines/
 - **Multiple Timelines**: Supports multiple timeline blocks in the same post
 
 ### Changelog
+
+**v0.2.0** (Customizable Colors Update)
+- Added configurable color settings via admin panel
+- Six customizable color options (gradient start/end, heading colors, dot colors)
+- Support for separate dark mode colors
+- Example color schemes in documentation
+- Maintained backward compatibility with default colors
 
 **v0.1.0** (Initial Release)
 - Custom BBCode `[timelines]` implementation
