@@ -45,6 +45,18 @@ A Discourse theme component that implements custom BBCode `[timelines]...[/timel
 
 ### Usage
 
+#### Method 1: Using Toolbar Button (Recommended)
+
+1. Open the post editor
+2. Click the **"⋮" (More)** button in the toolbar
+3. Select **"Insert Timeline"**
+4. Edit the timeline content
+5. Publish your post
+
+The toolbar button will automatically insert the correct `[timelines]` tags without them being escaped by the new Discourse editor.
+
+#### Method 2: Manual Input (For Legacy Editor)
+
 Wrap your content with `[timelines]` and `[/timelines]` tags in your posts:
 
 ```
@@ -62,6 +74,8 @@ Added new features:
 - Feature C
 [/timelines]
 ```
+
+**Note**: The new Discourse editor may automatically escape manually typed square brackets. If you experience issues with manual input, please use the toolbar button instead.
 
 #### Example Use Cases
 
@@ -248,6 +262,18 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 
 ### 使用方法
 
+#### 方法一：使用工具栏按钮（推荐）
+
+1. 打开帖子编辑器
+2. 点击工具栏的 **"⋮" (更多)** 按钮
+3. 选择 **"插入时间轴"**
+4. 编辑时间轴内容
+5. 发布帖子
+
+工具栏按钮会自动插入正确的 `[timelines]` 标签，不会被 Discourse 新编辑器转义。
+
+#### 方法二：手动输入（适用于旧编辑器）
+
 在帖子中使用 `[timelines]` 和 `[/timelines]` 标签包裹内容：
 
 ```
@@ -265,6 +291,8 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 - 功能 C
 [/timelines]
 ```
+
+**注意**：Discourse 新编辑器可能会自动转义手动输入的方括号。如果手动输入遇到问题，请使用工具栏按钮。
 
 #### 使用场景示例
 
@@ -436,6 +464,13 @@ discourse-qingwa-timelines/
 - **Multiple Timelines**: Supports multiple timeline blocks in the same post
 
 ### Changelog
+
+**v0.3.0** (Composer Toolbar Button)
+- Added composer toolbar button for easy timeline insertion
+- Solves the issue of new Discourse editor auto-escaping square brackets
+- Supports wrapping selected text in timeline tags
+- Added English and Chinese localizations
+- Button appears in the "More" menu with a stream icon
 
 **v0.2.0** (Customizable Colors Update)
 - Added configurable color settings via admin panel
