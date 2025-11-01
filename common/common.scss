@@ -1,0 +1,130 @@
+.qingwa-timelines {
+  position: relative;
+  padding-left: 2.5em;
+  margin: 1.5em 0;
+  background: transparent;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0.5em;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #ff7a18, #ffb800);
+  }
+
+  > * {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.4;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.6;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul, ol {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-left: 1.5em;
+  }
+
+  li {
+    margin: 0.25em 0;
+  }
+
+  blockquote {
+    margin: 0.75em 0;
+    padding-left: 1em;
+    border-left: 3px solid var(--primary-low-mid);
+  }
+
+  code {
+    background: var(--primary-very-low);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+
+  pre {
+    margin: 0.75em 0;
+    padding: 0.75em;
+    background: var(--primary-very-low);
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+
+  strong, b {
+    font-weight: bold;
+  }
+
+  em, i {
+    font-style: italic;
+  }
+}
+
+// Responsive design for mobile
+@media screen and (max-width: 768px) {
+  .qingwa-timelines {
+    padding-left: 2em;
+
+    &::before {
+      left: 0.3em;
+    }
+  }
+}
+
+// Dark mode support - gradient colors work well in both modes
+// but we ensure other elements adapt properly
+body.dark-mode {
+  .qingwa-timelines {
+    code {
+      background: var(--primary-very-low);
+    }
+
+    pre {
+      background: var(--primary-very-low);
+    }
+
+    blockquote {
+      border-left-color: var(--primary-low-mid);
+    }
+  }
+}
+
+// Light mode explicit support
+body:not(.dark-mode) {
+  .qingwa-timelines {
+    code {
+      background: var(--primary-very-low);
+    }
+
+    pre {
+      background: var(--primary-very-low);
+    }
+
+    blockquote {
+      border-left-color: var(--primary-low-mid);
+    }
+  }
+}

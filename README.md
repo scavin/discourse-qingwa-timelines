@@ -1,93 +1,371 @@
 # discourse-qingwa-timelines
 
+[English](#english) | [中文](#中文)
 
+---
 
-## Getting started
+## English
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+A Discourse theme component that implements custom BBCode `[timelines]...[/timelines]` for creating beautiful timeline layouts.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### Features
 
-## Add your files
+- **Custom BBCode**: Use `[timelines]...[/timelines]` tags to create timeline layouts
+- **Visual Design**: Single vertical gradient line (orange #ff7a18 → gold #ffb800) on the left with content on the right
+- **Minimalist**: Clean, transparent background with no unnecessary decorations
+- **Markdown Support**: Preserves all Markdown formatting (headings, lists, bold, etc.) inside timelines
+- **Multi-purpose**: Works for timelines, step-by-step guides, chapter divisions, and more
+- **Responsive**: Mobile-friendly layout with adaptive spacing
+- **Theme Compatible**: Supports both light and dark modes
+- **Safe**: Prevents XSS injection and handles HTML securely
+- **No Dependencies**: Uses only Discourse native APIs
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+### Installation
+
+#### Method 1: Install from Git Repository (Recommended)
+
+1. Go to your Discourse Admin panel
+2. Navigate to **Customize** → **Themes** → **Install**
+3. Click **"From a git repository"**
+4. Enter the repository URL:
+   ```
+   https://gitlab.com/scavin/discourse-qingwa-timelines
+   ```
+5. Click **Install**
+6. Enable the component on your active theme
+
+#### Method 2: Manual Upload
+
+1. Download or clone this repository
+2. Go to your Discourse Admin panel
+3. Navigate to **Customize** → **Themes** → **Install**
+4. Click **"Upload a theme"**
+5. Upload the entire folder as a ZIP file
+6. Enable the component on your active theme
+
+### Usage
+
+Wrap your content with `[timelines]` and `[/timelines]` tags in your posts:
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/scavin/discourse-qingwa-timelines.git
-git branch -M main
-git push -uf origin main
+[timelines]
+## January 2024 - Project Launch
+The project was officially initiated, and the team was formed...
+
+## March 2024 - First Release
+Core functionality development completed...
+
+## June 2024 - Version 2.0
+Added new features:
+- Feature A
+- Feature B
+- Feature C
+[/timelines]
 ```
 
-## Integrate with your tools
+#### Example Use Cases
 
-- [ ] [Set up project integrations](https://gitlab.com/scavin/discourse-qingwa-timelines/-/settings/integrations)
+**Timeline:**
+```
+[timelines]
+## 2020 - Foundation
+Company established in Silicon Valley.
 
-## Collaborate with your team
+## 2021 - Growth
+Expanded to 50 employees.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+## 2022 - Innovation
+Launched flagship product.
+[/timelines]
+```
 
-## Test and Deploy
+**Step-by-Step Guide:**
+```
+[timelines]
+## Step 1: Installation
+Download and install the software from our website.
 
-Use the built-in continuous integration in GitLab.
+## Step 2: Configuration
+Set up your preferences in the settings panel.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## Step 3: Launch
+Click the start button to begin using the application.
+[/timelines]
+```
 
-***
+**Chapter Divisions:**
+```
+[timelines]
+## Chapter 1: The Beginning
+Once upon a time, in a land far away...
 
-# Editing this README
+## Chapter 2: The Journey
+The hero embarked on an epic quest...
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## Chapter 3: The Resolution
+After many trials, peace was restored.
+[/timelines]
+```
 
-## Suggestions for a good README
+### Visual Preview
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+The timeline will display with:
+- A 2px wide gradient line on the left (orange to gold)
+- All content aligned to the right of the line
+- Proper spacing and typography
+- Support for headings, paragraphs, lists, and other Markdown elements
 
-## Name
-Choose a self-explaining name for your project.
+### Customization
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+You can customize the appearance by modifying the `common/common.scss` file:
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+**Change gradient colors:**
+```scss
+.qingwa-timelines::before {
+  background: linear-gradient(to bottom, #your-start-color, #your-end-color);
+}
+```
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+**Adjust spacing:**
+```scss
+.qingwa-timelines {
+  padding-left: 3em; /* Increase space from line to content */
+  margin: 2em 0;     /* Increase vertical spacing */
+}
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+**Change line width:**
+```scss
+.qingwa-timelines::before {
+  width: 3px; /* Make line thicker */
+}
+```
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### Compatibility
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- **Discourse Version**: 2.8.0 or higher
+- **Other BBCodes**: Does not conflict with `[details]`, `[quote]`, `[note]`, `[wrap]`, etc.
+- **Theme Support**: Works with any Discourse theme
+- **Browser Support**: All modern browsers
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### Security
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+- Prevents XSS injection
+- Sanitizes user input
+- Uses safe HTML structures
+- No inline event handlers
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+### License
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+MIT License - see LICENSE file for details
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+### Support
 
-## License
-For open source projects, say how it is licensed.
+For issues, questions, or feature requests, please visit:
+- GitLab Issues: https://gitlab.com/scavin/discourse-qingwa-timelines/-/issues
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### Contributing
+
+Contributions are welcome! Please feel free to submit pull requests or open issues.
+
+---
+
+## 中文
+
+一个 Discourse 主题组件，实现自定义 BBCode `[timelines]...[/timelines]` 时间轴功能。
+
+### 功能特性
+
+- **自定义 BBCode**：使用 `[timelines]...[/timelines]` 标签创建时间轴布局
+- **视觉设计**：左侧单根渐变竖线（橙色 #ff7a18 → 金色 #ffb800），右侧显示内容
+- **极简主义**：干净透明的背景，没有多余装饰
+- **Markdown 支持**：保留时间轴内所有 Markdown 格式（标题、列表、粗体等）
+- **多用途**：适用于时间线、步骤说明、章节分隔等多种场景
+- **响应式**：移动端友好的布局，自适应间距
+- **主题兼容**：支持浅色和深色模式
+- **安全**：防止 XSS 注入，安全处理 HTML
+- **无依赖**：仅使用 Discourse 原生 API
+
+### 安装
+
+#### 方法一：从 Git 仓库安装（推荐）
+
+1. 进入 Discourse 管理后台
+2. 导航至 **定制** → **主题** → **安装**
+3. 点击 **"从 git 仓库安装"**
+4. 输入仓库地址：
+   ```
+   https://gitlab.com/scavin/discourse-qingwa-timelines
+   ```
+5. 点击 **安装**
+6. 在活动主题上启用该组件
+
+#### 方法二：手动上传
+
+1. 下载或克隆本仓库
+2. 进入 Discourse 管理后台
+3. 导航至 **定制** → **主题** → **安装**
+4. 点击 **"上传主题"**
+5. 将整个文件夹打包为 ZIP 文件并上传
+6. 在活动主题上启用该组件
+
+### 使用方法
+
+在帖子中使用 `[timelines]` 和 `[/timelines]` 标签包裹内容：
+
+```
+[timelines]
+## 2024年1月 - 项目启动
+项目正式立项，组建团队...
+
+## 2024年3月 - 第一版发布
+完成核心功能开发...
+
+## 2024年6月 - 2.0版本
+新增功能：
+- 功能 A
+- 功能 B
+- 功能 C
+[/timelines]
+```
+
+#### 使用场景示例
+
+**时间线：**
+```
+[timelines]
+## 2020年 - 成立
+公司在硅谷成立。
+
+## 2021年 - 成长
+团队扩展到50人。
+
+## 2022年 - 创新
+推出旗舰产品。
+[/timelines]
+```
+
+**步骤说明：**
+```
+[timelines]
+## 第一步：安装
+从官网下载并安装软件。
+
+## 第二步：配置
+在设置面板中配置偏好选项。
+
+## 第三步：启动
+点击开始按钮使用应用程序。
+[/timelines]
+```
+
+**章节分隔：**
+```
+[timelines]
+## 第一章：开端
+很久很久以前，在一个遥远的地方...
+
+## 第二章：旅程
+英雄踏上了史诗般的征途...
+
+## 第三章：终结
+经历重重考验后，和平得以恢复。
+[/timelines]
+```
+
+### 视觉效果
+
+时间轴将显示为：
+- 左侧 2px 宽的渐变线（橙色到金色）
+- 所有内容对齐到线的右侧
+- 适当的间距和排版
+- 支持标题、段落、列表等 Markdown 元素
+
+### 自定义样式
+
+您可以通过修改 `common/common.scss` 文件来自定义外观：
+
+**更改渐变颜色：**
+```scss
+.qingwa-timelines::before {
+  background: linear-gradient(to bottom, #起始颜色, #结束颜色);
+}
+```
+
+**调整间距：**
+```scss
+.qingwa-timelines {
+  padding-left: 3em; /* 增加线到内容的距离 */
+  margin: 2em 0;     /* 增加垂直间距 */
+}
+```
+
+**更改线条宽度：**
+```scss
+.qingwa-timelines::before {
+  width: 3px; /* 加粗线条 */
+}
+```
+
+### 兼容性
+
+- **Discourse 版本**：2.8.0 或更高
+- **其他 BBCode**：不与 `[details]`、`[quote]`、`[note]`、`[wrap]` 等冲突
+- **主题支持**：适用于任何 Discourse 主题
+- **浏览器支持**：所有现代浏览器
+
+### 安全性
+
+- 防止 XSS 注入
+- 清理用户输入
+- 使用安全的 HTML 结构
+- 无内联事件处理器
+
+### 许可证
+
+MIT 许可证 - 详见 LICENSE 文件
+
+### 支持
+
+如有问题、疑问或功能请求，请访问：
+- GitLab Issues: https://gitlab.com/scavin/discourse-qingwa-timelines/-/issues
+
+### 贡献
+
+欢迎贡献！请随时提交拉取请求或提出问题。
+
+---
+
+## Development
+
+### File Structure
+
+```
+discourse-qingwa-timelines/
+├── javascripts/
+│   └── discourse/
+│       └── initializers/
+│           └── qingwa-timelines.js.es6
+├── common/
+│   └── common.scss
+├── about.json
+├── README.md
+└── LICENSE
+```
+
+### Technical Details
+
+- **Initializer**: Uses Discourse's `decorateCooked` API to parse and render timelines
+- **Idempotency**: Parser is idempotent and won't create nested structures on re-render
+- **Safety**: Skips code blocks, pre blocks, and blockquotes to prevent unintended parsing
+- **Multiple Timelines**: Supports multiple timeline blocks in the same post
+
+### Changelog
+
+**v0.1.0** (Initial Release)
+- Custom BBCode `[timelines]` implementation
+- Gradient vertical line design
+- Markdown preservation
+- Light/dark mode support
+- Mobile responsive layout
+- XSS protection
