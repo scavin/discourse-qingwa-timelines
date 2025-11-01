@@ -48,7 +48,7 @@
     &::before {
       content: '';
       position: absolute;
-      left: calc(-2em - 3px); // User-recommended position
+      left: calc(-2em + 5px); // Fixed position
       top: 50%; // Center vertically
       transform: translateY(-50%);
       width: 10px;
