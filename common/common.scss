@@ -29,10 +29,40 @@
     }
   }
 
+  // Timeline node markers for H2 headings
+  h2 {
+    position: relative;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    font-size: 1.1em;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    // Circular dot marker positioned on the gradient line
+    &::before {
+      content: '';
+      position: absolute;
+      left: calc(-2em - 5px); // Position on the gradient line, centered
+      top: 0.5em; // Vertically align with heading text
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ff7a18;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px rgba(255, 122, 24, 0.2), 0 2px 4px rgba(0, 0, 0, 0.15);
+      z-index: 1;
+    }
+  }
+
   p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+    margin-left: 0.5em;
     line-height: 1.6;
+    font-weight: normal;
     
     &:first-child {
       margin-top: 0;
@@ -91,6 +121,17 @@
     &::before {
       left: 0.3em;
     }
+
+    h2 {
+      font-size: 1.05em;
+      
+      &::before {
+        left: calc(-1.7em - 4px); // Adjust for mobile line position
+        width: 8px;
+        height: 8px;
+        top: 0.6em;
+      }
+    }
   }
 }
 
@@ -108,6 +149,11 @@ body.dark-mode {
 
     blockquote {
       border-left-color: var(--primary-low-mid);
+    }
+
+    h2::before {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 2px rgba(255, 122, 24, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3);
     }
   }
 }
