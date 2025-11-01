@@ -32,10 +32,13 @@
   // Timeline node markers for H2 headings
   h2 {
     position: relative;
-    font-weight: 600;
-    margin-top: 1.5em;
-    margin-bottom: 0.8em;
-    font-size: 1.1em;
+    font-size: 1.35em; // Significantly larger to stand out
+    font-weight: 700; // Bold for emphasis
+    color: #d96d14; // Deep orange matching gradient
+    margin-top: 2.5em; // More spacing from previous section
+    margin-bottom: 1em; // Proper spacing to content
+    line-height: 1.4;
+    letter-spacing: 0.3px; // Enhanced readability
     
     &:first-child {
       margin-top: 0;
@@ -45,14 +48,15 @@
     &::before {
       content: '';
       position: absolute;
-      left: calc(-2em - 5px); // Position on the gradient line, centered
-      top: 0.5em; // Vertically align with heading text
+      left: calc(-2em - 3px); // User-recommended position
+      top: 50%; // Center vertically
+      transform: translateY(-50%);
       width: 10px;
       height: 10px;
       border-radius: 50%;
       background: #ff7a18;
       border: 2px solid #fff;
-      box-shadow: 0 0 0 2px rgba(255, 122, 24, 0.2), 0 2px 4px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
       z-index: 1;
     }
   }
@@ -61,8 +65,9 @@
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     margin-left: 0.5em;
+    font-size: 1em; // Ensure regular text size
+    font-weight: 400; // Normal weight for contrast with headings
     line-height: 1.6;
-    font-weight: normal;
     
     &:first-child {
       margin-top: 0;
@@ -77,6 +82,9 @@
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     padding-left: 1.5em;
+    font-size: 1em; // Ensure regular text size
+    font-weight: 400; // Normal weight for contrast with headings
+    line-height: 1.6;
   }
 
   li {
@@ -123,13 +131,13 @@
     }
 
     h2 {
-      font-size: 1.05em;
+      font-size: 1.25em; // Slightly smaller but still prominent on mobile
+      margin-top: 2em; // Slightly reduced spacing for mobile
       
       &::before {
-        left: calc(-1.7em - 4px); // Adjust for mobile line position
+        left: calc(-1.7em - 3px); // Adjust for mobile line position
         width: 8px;
         height: 8px;
-        top: 0.6em;
       }
     }
   }
@@ -139,6 +147,15 @@
 // but we ensure other elements adapt properly
 body.dark-mode {
   .qingwa-timelines {
+    h2 {
+      color: #ff9854; // Brighter orange for dark mode visibility
+    }
+
+    h2::before {
+      border-color: var(--secondary);
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    }
+
     code {
       background: var(--primary-very-low);
     }
@@ -149,11 +166,6 @@ body.dark-mode {
 
     blockquote {
       border-left-color: var(--primary-low-mid);
-    }
-
-    h2::before {
-      border-color: var(--secondary);
-      box-shadow: 0 0 0 2px rgba(255, 122, 24, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3);
     }
   }
 }
