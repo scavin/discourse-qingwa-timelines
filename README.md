@@ -20,6 +20,23 @@ A Discourse theme component that implements custom BBCode `[timelines]...[/timel
 - **Safe**: Prevents XSS injection and handles HTML securely
 - **No Dependencies**: Uses only Discourse native APIs
 
+### Supported Languages
+
+This component includes interface translations for the following languages:
+
+- 🇬🇧 English
+- 🇨🇳 简体中文 (Simplified Chinese)
+- 🇹🇼 繁體中文 (Traditional Chinese)
+- 🇯🇵 日本語 (Japanese)
+- 🇰🇷 한국어 (Korean)
+- 🇫🇷 Français (French)
+- 🇩🇪 Deutsch (German)
+- 🇪🇸 Español (Spanish)
+- 🇵🇹 Português (Portuguese)
+- 🇷🇺 Русский (Russian)
+
+Languages not listed above will automatically fall back to English.
+
 ### Installation
 
 #### Method 1: Install from Git Repository (Recommended)
@@ -236,6 +253,23 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 - **主题兼容**：支持浅色和深色模式
 - **安全**：防止 XSS 注入，安全处理 HTML
 - **无依赖**：仅使用 Discourse 原生 API
+
+### 支持的语言
+
+本组件支持以下语言的界面翻译：
+
+- 🇬🇧 English（英语）
+- 🇨🇳 简体中文
+- 🇹🇼 繁體中文
+- 🇯🇵 日本語（日语）
+- 🇰🇷 한국어（韩语）
+- 🇫🇷 Français（法语）
+- 🇩🇪 Deutsch（德语）
+- 🇪🇸 Español（西班牙语）
+- 🇵🇹 Português（葡萄牙语）
+- 🇷🇺 Русский（俄语）
+
+其他语言会自动回退到英文显示。
 
 ### 安装
 
