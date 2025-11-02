@@ -14,6 +14,34 @@ function initializeTimelines(api) {
     processTimelinesInElement($elem[0]);
     $elem.addClass("qingwa-timelines-processed");
   }, { id: "qingwa-timelines" });
+
+  // Add composer toolbar button
+  api.addComposerToolbarPopupMenuOption({
+    action: "insertTimelines",
+    icon: "stream",
+    label: "timelines.composer_toolbar.insert_button"
+  });
+
+  // Register the insert action
+  api.modifyClass("controller:composer", {
+    pluginId: "discourse-qingwa-timelines",
+    
+    actions: {
+      insertTimelines() {
+        const selected = this.get("model.reply").substring(
+          this.get("model.replySelection.start"),
+          this.get("model.replySelection.end")
+        );
+        
+        const text = selected || "## 标题\n内容...";
+        const insertion = `[timelines]\n${text}\n[/timelines]`;
+        
+        this.get("model").appendText(insertion, null, {
+          new_line: true
+        });
+      }
+    }
+  });
 }
 
 function processTimelinesInElement(element) {
