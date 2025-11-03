@@ -1,4 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import I18n from "I18n";
 
 function initializeTimelines(api) {
   api.decorateCooked($elem => {
@@ -19,7 +20,9 @@ function initializeTimelines(api) {
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "stream",
-    label: "timelines.composer_toolbar.insert_button"
+    label: I18n.t("timelines.composer_toolbar.insert_button", {
+      defaultValue: "Insert Timeline"
+    })
   });
 
   // Register the insert action

@@ -497,6 +497,71 @@ discourse-qingwa-timelines/
 - **Safety**: Skips code blocks, pre blocks, and blockquotes to prevent unintended parsing
 - **Multiple Timelines**: Supports multiple timeline blocks in the same post
 
+### Troubleshooting
+
+#### Toolbar button displays translation key (e.g., `[zh_CN.timelines...]`)
+
+**Cause**: Translation files not properly loaded or cached.
+
+**Solution**:
+
+1. **Rebuild theme** (Recommended):
+   - Go to **Admin** → **Customize** → **Themes**
+   - Select your theme → **Components**
+   - Find `discourse-qingwa-timelines` → Click **Update** (if installed from Git)
+   - Return to theme page → Click **Save** or **Rebuild**
+
+2. **Check browser console**:
+   - Press F12 to open Developer Tools
+   - Check for any JavaScript errors in the Console tab
+
+3. **Verify translation files**:
+   - Ensure `locales/` directory exists in the component
+   - Check file format (UTF-8 encoding, 2-space indentation, double quotes for strings)
+   - Verify language code matches exactly (e.g., `zh_CN` not `zh-CN` or `zh_cn`)
+
+4. **Clear cache** (Advanced - requires server access):
+   ```bash
+   cd /var/discourse
+   ./launcher rebuild app
+   ```
+
+#### Button doesn't appear or doesn't work
+
+**Possible causes**:
+- Discourse version too old (requires ≥ 2.8.0)
+- Component not properly installed on theme
+- JavaScript errors in browser console
+
+**Solution**:
+- Check Discourse version in Admin panel
+- Verify component is added to your active theme
+- Check browser console for error messages
+- Try disabling other theme components to identify conflicts
+
+#### Timelines not rendering
+
+**Possible causes**:
+- BBCode tags being escaped by editor
+- Content inside code blocks or quotes
+- JavaScript not loaded properly
+
+**Solution**:
+- Use the toolbar button instead of manual input (prevents escaping)
+- Ensure timelines are not nested inside code blocks, quotes, or other BBCode
+- Check browser console for errors
+- Try refreshing the page or clearing browser cache
+
+#### Translation shows wrong language
+
+**Cause**: Browser or Discourse language settings not matching expected language.
+
+**Solution**:
+- Check your Discourse user preferences → Interface → Language
+- The component will automatically use the language set in Discourse preferences
+- If your language is not supported, it will fall back to English
+- Supported languages: English, 简体中文, 繁體中文, 日本語, 한국어, Français, Deutsch, Español, Português, Русский
+
 ### Changelog
 
 **v0.3.0** (Composer Toolbar Button)
