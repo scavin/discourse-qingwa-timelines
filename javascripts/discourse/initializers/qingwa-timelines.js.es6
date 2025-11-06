@@ -1,7 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import I18n from "discourse-i18n";
 
-function initializeTimelines(api) {
+function initializeTimelines(api, container) {
   api.decorateCooked($elem => {
     if ($elem.hasClass("qingwa-timelines-processed")) {
       return;
@@ -16,27 +15,13 @@ function initializeTimelines(api) {
     $elem.addClass("qingwa-timelines-processed");
   }, { id: "qingwa-timelines" });
 
-  // Add composer toolbar button with language mapping
-  // Direct string mapping to avoid translation key lookup by Discourse API
-  const buttonLabels = {
-    "zh_CN": "插入时间轴",
-    "zh_TW": "插入時間軸",
-    "en": "Insert Timeline",
-    "ja": "タイムラインを挿入",
-    "ko": "타임라인 삽입",
-    "fr": "Insérer une chronologie",
-    "de": "Zeitleiste einfügen",
-    "es": "Insertar línea de tiempo",
-    "pt": "Inserir linha do tempo",
-    "ru": "Вставить временную шкалу"
-  };
-  
-  const currentLabel = buttonLabels[I18n.locale] || buttonLabels["en"] || "Insert Timeline";
+  // Add composer toolbar button with configurable label
+  const siteSettings = container.lookup("site-settings:main");
   
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "stream",
-    label: currentLabel
+    label: siteSettings.toolbar_button_label
   });
 
   // Register the insert action
@@ -110,7 +95,7 @@ function processTimelinesInElement(element) {
 export default {
   name: "qingwa-timelines",
   
-  initialize() {
-    withPluginApi("0.8.31", initializeTimelines);
+  initialize(container) {
+    withPluginApi("0.8.31", api => initializeTimelines(api, container));
   }
 };

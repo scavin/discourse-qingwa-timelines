@@ -20,24 +20,9 @@ A Discourse theme component that implements custom BBCode `[timelines]...[/timel
 - **Safe**: Prevents XSS injection and handles HTML securely
 - **No Dependencies**: Uses only Discourse native APIs
 
-### Supported Languages
+### Language Support
 
-This component includes interface translations for the following languages:
-
-- 🇬🇧 English
-- 🇨🇳 简体中文 (Simplified Chinese)
-- 🇹🇼 繁體中文 (Traditional Chinese)
-- 🇯🇵 日本語 (Japanese)
-- 🇰🇷 한국어 (Korean)
-- 🇫🇷 Français (French)
-- 🇩🇪 Deutsch (German)
-- 🇪🇸 Español (Spanish)
-- 🇵🇹 Português (Portuguese)
-- 🇷🇺 Русский (Russian)
-
-Languages not listed above will automatically fall back to English.
-
-**Note**: The composer toolbar button label uses in-code language mapping for reliability and compatibility with Discourse's toolbar API. The button text will automatically match your Discourse language setting.
+This component is language-agnostic. The toolbar button text can be customized to any language through the settings panel. See the "Customizing Toolbar Button Text" section below for details.
 
 ### Installation
 
@@ -159,12 +144,30 @@ After installing the component, you can customize the timeline colors in the Dis
 
 #### Available Settings:
 
+- **toolbar_button_label**: Text displayed on the composer toolbar button for inserting timelines, default `"Insert Timeline"`
 - **timeline_gradient_start**: Gradient line start color (top), default `#ff7a18`
 - **timeline_gradient_end**: Gradient line end color (bottom), default `#ffb800`
 - **timeline_heading_color**: Heading text color, default `#d96d14`
 - **timeline_dot_color**: Timeline node dot color, default `#ff7a18`
 - **timeline_heading_color_dark**: Heading color in dark mode, default `#ff9854`
 - **timeline_dot_border_color_dark**: Dot border color in dark mode (leave empty to use theme default)
+
+#### Customizing Toolbar Button Text
+
+You can customize the text displayed on the composer toolbar button:
+
+1. Go to **Admin** → **Settings** → Search for `toolbar_button_label`
+2. Change the text to your preferred language:
+   - For Chinese: `插入时间轴`
+   - For English: `Insert Timeline` (default)
+   - For Japanese: `タイムラインを挿入`
+   - For any other custom text
+3. Save and refresh the page to see the changes
+
+**Examples:**
+- Chinese site: `插入时间轴`
+- Minimal style: `Timeline`
+- Custom branding: `Add Timeline`
 
 #### Example Color Schemes:
 
@@ -256,24 +259,9 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 - **安全**：防止 XSS 注入，安全处理 HTML
 - **无依赖**：仅使用 Discourse 原生 API
 
-### 支持的语言
+### 语言支持
 
-本组件支持以下语言的界面翻译：
-
-- 🇬🇧 English（英语）
-- 🇨🇳 简体中文
-- 🇹🇼 繁體中文
-- 🇯🇵 日本語（日语）
-- 🇰🇷 한국어（韩语）
-- 🇫🇷 Français（法语）
-- 🇩🇪 Deutsch（德语）
-- 🇪🇸 Español（西班牙语）
-- 🇵🇹 Português（葡萄牙语）
-- 🇷🇺 Русский（俄语）
-
-其他语言会自动回退到英文显示。
-
-**注意**：编辑器工具栏按钮使用代码内语言映射，以确保可靠性和与 Discourse 工具栏 API 的兼容性。按钮文字会自动匹配您的 Discourse 语言设置。
+本组件与语言无关。工具栏按钮文字可以通过设置面板自定义为任何语言。请参阅下面的"自定义工具栏按钮文字"部分了解详情。
 
 ### 安装
 
@@ -395,12 +383,30 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 
 #### 可配置项：
 
+- **toolbar_button_label**: 编辑器工具栏中插入时间轴按钮上显示的文字，默认 `"Insert Timeline"`
 - **timeline_gradient_start**: 渐变线起始色（顶部），默认 `#ff7a18`
 - **timeline_gradient_end**: 渐变线结束色（底部），默认 `#ffb800`
 - **timeline_heading_color**: 标题文字颜色，默认 `#d96d14`
 - **timeline_dot_color**: 节点圆点颜色，默认 `#ff7a18`
 - **timeline_heading_color_dark**: 深色模式下的标题颜色，默认 `#ff9854`
 - **timeline_dot_border_color_dark**: 深色模式下的圆点边框颜色（留空则使用主题默认）
+
+#### 自定义工具栏按钮文字
+
+您可以自定义编辑器工具栏按钮上显示的文字：
+
+1. 进入 **Admin** → **Settings** → 搜索 `toolbar_button_label`
+2. 修改为您想要的文字：
+   - 中文：`插入时间轴`
+   - 英文：`Insert Timeline`（默认）
+   - 日文：`タイムラインを挿入`
+   - 或任何其他自定义文字
+3. 保存后刷新页面即可看到更改
+
+**示例：**
+- 中文站点：`插入时间轴`
+- 极简风格：`Timeline`
+- 自定义品牌：`添加时间线`
 
 #### 示例配色方案：
 
@@ -503,26 +509,22 @@ discourse-qingwa-timelines/
 
 ### Troubleshooting
 
-#### Toolbar button displays translation key (e.g., `[zh_CN.timelines...]`)
+#### Toolbar button shows unexpected text
 
-**Status**: This issue has been fixed in the latest version.
+**Solution**: The toolbar button text is now fully configurable through settings:
 
-**Explanation**: Earlier versions relied on Discourse's translation system for the toolbar button label, which had compatibility issues with the `addComposerToolbarPopupMenuOption` API. The button now uses direct language mapping instead.
+1. **Customize the button label**:
+   - Go to **Admin** → **Settings** → Search for `toolbar_button_label`
+   - Set your preferred text (e.g., "插入时间轴" for Chinese)
+   - Save and refresh the page
 
-**If you still see this issue**:
+2. **Common settings**:
+   - Chinese sites: `插入时间轴`
+   - English sites: `Insert Timeline` (default)
+   - Minimal style: `Timeline`
+   - Custom branding: Any text you prefer
 
-1. **Update to the latest version**:
-   - Go to **Admin** → **Customize** → **Themes**
-   - Select your theme → **Components**
-   - Find `discourse-qingwa-timelines` → Click **Update** (if installed from Git)
-
-2. **Rebuild theme**:
-   - Return to theme page → Click **Save** or **Rebuild**
-
-3. **Clear browser cache**:
-   - Press Ctrl+Shift+R (Windows/Linux) or Cmd+Shift+R (Mac)
-
-**Technical Note**: The button label now uses an in-code language mapping that directly provides the translated string based on your Discourse language setting, bypassing the translation file system entirely.
+**Note**: The component no longer uses translation files, eliminating translation key display issues entirely.
 
 #### Button doesn't appear or doesn't work
 
@@ -550,17 +552,25 @@ discourse-qingwa-timelines/
 - Check browser console for errors
 - Try refreshing the page or clearing browser cache
 
-#### Translation shows wrong language
+#### Button text needs customization
 
-**Cause**: Browser or Discourse language settings not matching expected language.
+**Solution**: Since the toolbar button text is now configurable:
 
-**Solution**:
-- Check your Discourse user preferences → Interface → Language
-- The component will automatically use the language set in Discourse preferences
-- If your language is not supported, it will fall back to English
-- Supported languages: English, 简体中文, 繁體中文, 日本語, 한국어, Français, Deutsch, Español, Português, Русский
+1. Go to **Admin** → **Settings** → Search for `toolbar_button_label`
+2. Enter your desired text in any language
+3. Save and refresh the page
+
+This approach gives administrators complete control over the button text without relying on translation files.
 
 ### Changelog
+
+**v0.4.0** (Configurable Toolbar Button Label)
+- Removed all translation system dependencies
+- Added `toolbar_button_label` setting for full administrator control
+- Button text now configurable through Admin → Settings
+- Eliminated translation key display issues entirely
+- Simplified installation and maintenance
+- Deleted locales directory as it's no longer needed
 
 **v0.3.1** (Toolbar Button Label Fix)
 - Fixed toolbar button displaying translation key instead of proper text
@@ -572,7 +582,7 @@ discourse-qingwa-timelines/
 - Added composer toolbar button for easy timeline insertion
 - Solves the issue of new Discourse editor auto-escaping square brackets
 - Supports wrapping selected text in timeline tags
-- Added English and Chinese localizations
+- Initially added English and Chinese localizations (later removed in v0.4.0)
 - Button appears in the "More" menu with a stream icon
 
 **v0.2.0** (Customizable Colors Update)
