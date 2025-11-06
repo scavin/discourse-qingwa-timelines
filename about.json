@@ -4,7 +4,7 @@
   "license_url": "https://gitlab.com/scavin/discourse-qingwa-timelines/-/blob/main/LICENSE",
   "component": true,
   "authors": "Scavin",
-  "theme_version": "0.3.0",
+  "theme_version": "0.3.1",
   "minimum_discourse_version": "2.8.0",
   "maximum_discourse_version": null,
   "learn_more": "https://gitlab.com/scavin/discourse-qingwa-timelines/-/blob/main/README.md"

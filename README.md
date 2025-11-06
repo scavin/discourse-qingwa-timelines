@@ -37,6 +37,8 @@ This component includes interface translations for the following languages:
 
 Languages not listed above will automatically fall back to English.
 
+**Note**: The composer toolbar button label uses in-code language mapping for reliability and compatibility with Discourse's toolbar API. The button text will automatically match your Discourse language setting.
+
 ### Installation
 
 #### Method 1: Install from Git Repository (Recommended)
@@ -271,6 +273,8 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 
 其他语言会自动回退到英文显示。
 
+**注意**：编辑器工具栏按钮使用代码内语言映射，以确保可靠性和与 Discourse 工具栏 API 的兼容性。按钮文字会自动匹配您的 Discourse 语言设置。
+
 ### 安装
 
 #### 方法一：从 Git 仓库安装（推荐）
@@ -501,30 +505,24 @@ discourse-qingwa-timelines/
 
 #### Toolbar button displays translation key (e.g., `[zh_CN.timelines...]`)
 
-**Cause**: Translation files not properly loaded or cached.
+**Status**: This issue has been fixed in the latest version.
 
-**Solution**:
+**Explanation**: Earlier versions relied on Discourse's translation system for the toolbar button label, which had compatibility issues with the `addComposerToolbarPopupMenuOption` API. The button now uses direct language mapping instead.
 
-1. **Rebuild theme** (Recommended):
+**If you still see this issue**:
+
+1. **Update to the latest version**:
    - Go to **Admin** → **Customize** → **Themes**
    - Select your theme → **Components**
    - Find `discourse-qingwa-timelines` → Click **Update** (if installed from Git)
+
+2. **Rebuild theme**:
    - Return to theme page → Click **Save** or **Rebuild**
 
-2. **Check browser console**:
-   - Press F12 to open Developer Tools
-   - Check for any JavaScript errors in the Console tab
+3. **Clear browser cache**:
+   - Press Ctrl+Shift+R (Windows/Linux) or Cmd+Shift+R (Mac)
 
-3. **Verify translation files**:
-   - Ensure `locales/` directory exists in the component
-   - Check file format (UTF-8 encoding, 2-space indentation, double quotes for strings)
-   - Verify language code matches exactly (e.g., `zh_CN` not `zh-CN` or `zh_cn`)
-
-4. **Clear cache** (Advanced - requires server access):
-   ```bash
-   cd /var/discourse
-   ./launcher rebuild app
-   ```
+**Technical Note**: The button label now uses an in-code language mapping that directly provides the translated string based on your Discourse language setting, bypassing the translation file system entirely.
 
 #### Button doesn't appear or doesn't work
 
@@ -563,6 +561,12 @@ discourse-qingwa-timelines/
 - Supported languages: English, 简体中文, 繁體中文, 日本語, 한국어, Français, Deutsch, Español, Português, Русский
 
 ### Changelog
+
+**v0.3.1** (Toolbar Button Label Fix)
+- Fixed toolbar button displaying translation key instead of proper text
+- Changed from translation file system to in-code language mapping
+- Improved compatibility with Discourse's `addComposerToolbarPopupMenuOption` API
+- Button label now reliably displays in correct language without cache issues
 
 **v0.3.0** (Composer Toolbar Button)
 - Added composer toolbar button for easy timeline insertion
