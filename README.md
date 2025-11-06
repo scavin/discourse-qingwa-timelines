@@ -144,7 +144,6 @@ After installing the component, you can customize the timeline colors in the Dis
 
 #### Available Settings:
 
-- **toolbar_button_label**: Text displayed on the composer toolbar button for inserting timelines, default `"Insert Timeline"`
 - **timeline_gradient_start**: Gradient line start color (top), default `#ff7a18`
 - **timeline_gradient_end**: Gradient line end color (bottom), default `#ffb800`
 - **timeline_heading_color**: Heading text color, default `#d96d14`
@@ -152,22 +151,28 @@ After installing the component, you can customize the timeline colors in the Dis
 - **timeline_heading_color_dark**: Heading color in dark mode, default `#ff9854`
 - **timeline_dot_border_color_dark**: Dot border color in dark mode (leave empty to use theme default)
 
+**Note:** The toolbar button text is hardcoded in the source file and not configurable through settings. See "Customizing Toolbar Button Text" section below for instructions.
+
 #### Customizing Toolbar Button Text
 
-You can customize the text displayed on the composer toolbar button:
+To customize the text displayed on the composer toolbar button, you need to edit the source file:
 
-1. Go to **Admin** → **Settings** → Search for `toolbar_button_label`
-2. Change the text to your preferred language:
-   - For Chinese: `插入时间轴`
-   - For English: `Insert Timeline` (default)
-   - For Japanese: `タイムラインを挿入`
-   - For any other custom text
-3. Save and refresh the page to see the changes
+1. Edit the file: `javascripts/discourse/initializers/qingwa-timelines.js.es6`
+2. Find line 24 (approximately):
+   ```javascript
+   label: "插入时间轴"  // Change this text
+   ```
+3. Change it to your preferred text:
+   - For English: `"Insert Timeline"`
+   - For Japanese: `"タイムラインを挿入"`
+   - Or any custom text you want
+4. Save the file and redeploy the theme component
 
 **Examples:**
-- Chinese site: `插入时间轴`
-- Minimal style: `Timeline`
-- Custom branding: `Add Timeline`
+- Chinese site: `"插入时间轴"` (default)
+- English site: `"Insert Timeline"`
+- Minimal style: `"Timeline"`
+- Custom branding: `"Add Timeline"`
 
 #### Example Color Schemes:
 
@@ -383,7 +388,6 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 
 #### 可配置项：
 
-- **toolbar_button_label**: 编辑器工具栏中插入时间轴按钮上显示的文字，默认 `"Insert Timeline"`
 - **timeline_gradient_start**: 渐变线起始色（顶部），默认 `#ff7a18`
 - **timeline_gradient_end**: 渐变线结束色（底部），默认 `#ffb800`
 - **timeline_heading_color**: 标题文字颜色，默认 `#d96d14`
@@ -391,22 +395,28 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 - **timeline_heading_color_dark**: 深色模式下的标题颜色，默认 `#ff9854`
 - **timeline_dot_border_color_dark**: 深色模式下的圆点边框颜色（留空则使用主题默认）
 
+**注意：** 工具栏按钮文字在源文件中硬编码，无法通过设置面板配置。请参阅下方"自定义工具栏按钮文字"部分了解如何修改。
+
 #### 自定义工具栏按钮文字
 
-您可以自定义编辑器工具栏按钮上显示的文字：
+要自定义编辑器工具栏按钮上显示的文字，需要编辑源文件：
 
-1. 进入 **Admin** → **Settings** → 搜索 `toolbar_button_label`
-2. 修改为您想要的文字：
-   - 中文：`插入时间轴`
-   - 英文：`Insert Timeline`（默认）
-   - 日文：`タイムラインを挿入`
+1. 编辑文件：`javascripts/discourse/initializers/qingwa-timelines.js.es6`
+2. 找到第 24 行（大约位置）：
+   ```javascript
+   label: "插入时间轴"  // 修改这里的文字
+   ```
+3. 改为您想要的文字：
+   - 英文：`"Insert Timeline"`
+   - 日文：`"タイムラインを挿入"`
    - 或任何其他自定义文字
-3. 保存后刷新页面即可看到更改
+4. 保存文件并重新部署主题组件
 
 **示例：**
-- 中文站点：`插入时间轴`
-- 极简风格：`Timeline`
-- 自定义品牌：`添加时间线`
+- 中文站点：`"插入时间轴"`（默认）
+- 英文站点：`"Insert Timeline"`
+- 极简风格：`"Timeline"`
+- 自定义品牌：`"添加时间线"`
 
 #### 示例配色方案：
 

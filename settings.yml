@@ -1,9 +1,14 @@
-toolbar_button_label:
-  default: "Insert Timeline"
-  type: string
-  description:
-    en: "Text displayed on the composer toolbar button for inserting timelines"
-    zh_CN: "编辑器工具栏中插入时间轴按钮上显示的文字"
+# Note: toolbar_button_label setting is currently not available
+# Please edit the label value directly in initializers/qingwa-timelines.js.es6 (line 24)
+# 注意：toolbar_button_label 配置暂时不可用
+# 请直接修改 initializers/qingwa-timelines.js.es6 文件中的 label 值（第 24 行）
+#
+# toolbar_button_label:
+#   default: "Insert Timeline"
+#   type: string
+#   description:
+#     en: "Text displayed on the composer toolbar button for inserting timelines"
+#     zh_CN: "编辑器工具栏中插入时间轴按钮上显示的文字"
 
 timeline_gradient_start:
   default: "#ff7a18"
