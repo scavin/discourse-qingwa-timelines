@@ -21,7 +21,7 @@ function initializeTimelines(api) {
     action: "insertTimelines",
     icon: "stream",
     label: I18n.t("timelines.composer_toolbar.insert_button", {
-      defaultValue: "Insert Timeline"
+      defaultValue: "插入时间轴"
     })
   });
 
