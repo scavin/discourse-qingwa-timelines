@@ -21,7 +21,7 @@ function initializeTimelines(api) {
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "stream",
-    label: "插入时间轴"
+    label: "Insert Timeline"
   });
 
   api.modifyClass("controller:composer", {
