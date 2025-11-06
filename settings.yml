@@ -1,53 +1,29 @@
-# Note: toolbar_button_label setting is currently not available
-# Please edit the label value directly in initializers/qingwa-timelines.js.es6 (line 24)
-# 注意：toolbar_button_label 配置暂时不可用
-# 请直接修改 initializers/qingwa-timelines.js.es6 文件中的 label 值（第 24 行）
-#
-# toolbar_button_label:
-#   default: "Insert Timeline"
-#   type: string
-#   description:
-#     en: "Text displayed on the composer toolbar button for inserting timelines"
-#     zh_CN: "编辑器工具栏中插入时间轴按钮上显示的文字"
-
 timeline_gradient_start:
   default: "#ff7a18"
   type: string
-  description:
-    en: "Timeline gradient start color (top)"
-    zh_CN: "时间轴渐变起始色（顶部）"
+  description: "Timeline gradient start color (top)"
 
 timeline_gradient_end:
   default: "#ffb800"
   type: string
-  description:
-    en: "Timeline gradient end color (bottom)"
-    zh_CN: "时间轴渐变结束色（底部）"
+  description: "Timeline gradient end color (bottom)"
 
 timeline_heading_color:
   default: "#d96d14"
   type: string
-  description:
-    en: "Timeline heading color"
-    zh_CN: "时间轴标题颜色"
+  description: "Timeline heading color"
 
 timeline_dot_color:
   default: "#ff7a18"
   type: string
-  description:
-    en: "Timeline dot marker color"
-    zh_CN: "时间轴节点圆点颜色"
+  description: "Timeline dot marker color"
 
 timeline_heading_color_dark:
   default: "#ff9854"
   type: string
-  description:
-    en: "Timeline heading color in dark mode"
-    zh_CN: "深色模式下的时间轴标题颜色"
+  description: "Timeline heading color in dark mode"
 
 timeline_dot_border_color_dark:
   default: ""
   type: string
-  description:
-    en: "Timeline dot border color in dark mode (leave empty to use theme default)"
-    zh_CN: "深色模式下的圆点边框颜色（留空则使用主题默认）"
+  description: "Timeline dot border color in dark mode (leave empty to use theme default)"
