@@ -1,5 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import I18n from "I18n";
+import I18n from "discourse-i18n";
 
 function initializeTimelines(api) {
   api.decorateCooked($elem => {
@@ -36,7 +36,13 @@ function initializeTimelines(api) {
           this.get("model.replySelection.end")
         );
         
-        const text = selected || "## 标题\n内容...";
+        const defaultTemplate = `## 2024年1月 - 项目启动
+项目正式立项，组建团队...
+
+## 2024年3月 - 第一版发布
+完成核心功能开发...`;
+        
+        const text = selected || defaultTemplate;
         const insertion = `[timelines]\n${text}\n[/timelines]`;
         
         this.get("model").appendText(insertion, null, {
