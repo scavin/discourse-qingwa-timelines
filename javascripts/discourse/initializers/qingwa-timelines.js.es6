@@ -16,13 +16,27 @@ function initializeTimelines(api) {
     $elem.addClass("qingwa-timelines-processed");
   }, { id: "qingwa-timelines" });
 
-  // Add composer toolbar button
+  // Add composer toolbar button with language mapping
+  // Direct string mapping to avoid translation key lookup by Discourse API
+  const buttonLabels = {
+    "zh_CN": "插入时间轴",
+    "zh_TW": "插入時間軸",
+    "en": "Insert Timeline",
+    "ja": "タイムラインを挿入",
+    "ko": "타임라인 삽입",
+    "fr": "Insérer une chronologie",
+    "de": "Zeitleiste einfügen",
+    "es": "Insertar línea de tiempo",
+    "pt": "Inserir linha do tempo",
+    "ru": "Вставить временную шкалу"
+  };
+  
+  const currentLabel = buttonLabels[I18n.locale] || buttonLabels["en"] || "Insert Timeline";
+  
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "stream",
-    label: I18n.t("timelines.composer_toolbar.insert_button", {
-      defaultValue: "插入时间轴"
-    })
+    label: currentLabel
   });
 
   // Register the insert action
