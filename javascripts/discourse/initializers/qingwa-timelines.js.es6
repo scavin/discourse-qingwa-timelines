@@ -1,85 +1,6 @@
-import I18n from "I18n";
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { themeSettings } from "discourse/lib/theme-settings";
 
-const DEFAULT_BUTTON_LABEL = "Insert Timeline";
-
-function resolveToolbarButtonLabel(container) {
-  console.log("=== Qingwa Timelines Debug ===");
-
-  let resolvedLabel;
-
-  if (themeSettings && typeof themeSettings === "object") {
-    const themeTimelineKeys = Object.keys(themeSettings).filter(key =>
-      key.includes("timeline")
-    );
-    console.log(
-      "Theme settings keys containing 'timeline':",
-      themeTimelineKeys
-    );
-    console.log(
-      "toolbar_button_label from theme settings:",
-      themeSettings.toolbar_button_label
-    );
-
-    if (themeSettings.toolbar_button_label) {
-      resolvedLabel = themeSettings.toolbar_button_label;
-    }
-  } else {
-    console.warn("themeSettings module is not available");
-  }
-
-  let siteSettings;
-
-  try {
-    siteSettings = container.lookup?.("site-settings:main");
-  } catch (error) {
-    console.error("Failed to lookup site settings:", error);
-  }
-
-  console.log("Site settings lookup success:", !!siteSettings);
-
-  if (siteSettings) {
-    let siteTimelineKeys = [];
-
-    try {
-      siteTimelineKeys = Object.keys(siteSettings).filter(key =>
-        key.includes("timeline")
-      );
-    } catch (error) {
-      console.warn("Unable to enumerate site settings keys:", error);
-    }
-
-    console.log(
-      "Site settings keys containing 'timeline':",
-      siteTimelineKeys
-    );
-    console.log(
-      "toolbar_button_label from site settings:",
-      siteSettings.toolbar_button_label
-    );
-
-    if (!resolvedLabel && siteSettings.toolbar_button_label) {
-      resolvedLabel = siteSettings.toolbar_button_label;
-    }
-  }
-
-  if (typeof resolvedLabel !== "string") {
-    resolvedLabel = resolvedLabel ? String(resolvedLabel) : "";
-  }
-
-  if (!resolvedLabel.trim()) {
-    resolvedLabel = DEFAULT_BUTTON_LABEL;
-  }
-
-  const finalLabel = I18n.t(resolvedLabel, { defaultValue: resolvedLabel });
-
-  console.log("Final composer toolbar button label:", finalLabel);
-
-  return finalLabel;
-}
-
-function initializeTimelines(api, container) {
+function initializeTimelines(api) {
   api.decorateCooked(
     $elem => {
       if ($elem.hasClass("qingwa-timelines-processed")) {
@@ -97,12 +18,10 @@ function initializeTimelines(api, container) {
     { id: "qingwa-timelines" }
   );
 
-  const buttonLabel = resolveToolbarButtonLabel(container);
-
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "stream",
-    label: buttonLabel
+    label: "插入时间轴"
   });
 
   api.modifyClass("controller:composer", {
@@ -165,7 +84,7 @@ function processTimelinesInElement(element) {
 export default {
   name: "qingwa-timelines",
 
-  initialize(container) {
-    withPluginApi("0.8.31", api => initializeTimelines(api, container));
+  initialize() {
+    withPluginApi("0.8.31", api => initializeTimelines(api));
   }
 };
