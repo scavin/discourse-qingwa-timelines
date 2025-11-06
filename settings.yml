@@ -39,3 +39,10 @@ timeline_dot_border_color_dark:
   description:
     en: "Timeline dot border color in dark mode (leave empty to use theme default)"
     zh_CN: "深色模式下的圆点边框颜色（留空则使用主题默认）"
+
+toolbar_button_label:
+  default: "Insert Timeline"
+  type: string
+  description:
+    en: "Text displayed on the composer toolbar button for inserting timelines"
+    zh_CN: "编辑器工具栏中插入时间轴按钮上显示的文字"
