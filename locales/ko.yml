@@ -1,2 +1,3 @@
 ko:
-  insert_timeline_button: "타임라인 삽입"
+  timelines:
+    insert_button: "타임라인 삽입"

@@ -1,2 +1,3 @@
 zh_CN:
-  insert_timeline_button: "插入时间轴"
+  timelines:
+    insert_button: "插入时间轴"
