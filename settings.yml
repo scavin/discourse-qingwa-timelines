@@ -1,29 +1,41 @@
 timeline_gradient_start:
   default: "#ff7a18"
   type: string
-  description: "Timeline gradient start color (top)"
+  description:
+    en: "Timeline gradient start color (top)"
+    zh_CN: "时间轴渐变起始色（顶部）"
 
 timeline_gradient_end:
   default: "#ffb800"
   type: string
-  description: "Timeline gradient end color (bottom)"
+  description:
+    en: "Timeline gradient end color (bottom)"
+    zh_CN: "时间轴渐变结束色（底部）"
 
 timeline_heading_color:
   default: "#d96d14"
   type: string
-  description: "Timeline heading color"
+  description:
+    en: "Timeline heading color"
+    zh_CN: "时间轴标题颜色"
 
 timeline_dot_color:
   default: "#ff7a18"
   type: string
-  description: "Timeline dot marker color"
+  description:
+    en: "Timeline dot marker color"
+    zh_CN: "时间轴节点圆点颜色"
 
 timeline_heading_color_dark:
   default: "#ff9854"
   type: string
-  description: "Timeline heading color in dark mode"
+  description:
+    en: "Timeline heading color in dark mode"
+    zh_CN: "深色模式下的时间轴标题颜色"
 
 timeline_dot_border_color_dark:
   default: ""
   type: string
-  description: "Timeline dot border color in dark mode (leave empty to use theme default)"
+  description:
+    en: "Timeline dot border color in dark mode (leave empty to use theme default)"
+    zh_CN: "深色模式下的圆点边框颜色（留空则使用主题默认）"
