@@ -19,7 +19,10 @@ function initializeTimelines(api) {
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "stream",
-    label: I18n.t("js.timelines.composer_toolbar.insert_button", { defaultValue: "Insert Timeline" })
+    label: "js.timelines.composer_toolbar.insert_button",
+    translatedLabel: I18n.t("js.timelines.composer_toolbar.insert_button", {
+      defaultValue: "Insert Timeline"
+    })
   });
 
   // Register the insert action
