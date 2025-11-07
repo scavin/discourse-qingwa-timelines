@@ -1,9 +1,2 @@
 zh_TW:
-  Insert Timeline: "插入時間軸"
-  timelines:
-    composer_toolbar:
-      insert_button: "插入時間軸"
-  js:
-    timelines:
-      composer_toolbar:
-        insert_button: "插入時間軸"
+  insert_timeline_button: "插入時間軸"

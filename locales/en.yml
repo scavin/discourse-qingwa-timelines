@@ -1,15 +1,2 @@
 en:
-  Insert Timeline: "Insert Timeline"
-  timelines:
-    composer_toolbar:
-      insert_button: "Insert Timeline"
-  js:
-    timelines:
-      composer_toolbar:
-        insert_button: "Insert Timeline"
-        test_stream: "Test Stream"
-        test_clock: "Test Clock"
-        test_calendar-alt: "Test Calendar"
-        test_list: "Test List"
-        test_chevron-right: "Test Chevron"
-        test_plus: "Test Plus"
+  insert_timeline_button: "Insert Timeline"
