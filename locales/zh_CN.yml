@@ -7,3 +7,9 @@ zh_CN:
     timelines:
       composer_toolbar:
         insert_button: "插入时间轴"
+        test_stream: "测试流图标"
+        test_clock: "测试时钟图标"
+        test_calendar-alt: "测试日历图标"
+        test_list: "测试列表图标"
+        test_chevron-right: "测试箭头图标"
+        test_plus: "测试加号图标"
