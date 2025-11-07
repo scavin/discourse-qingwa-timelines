@@ -1,0 +1,9 @@
+ja:
+  Insert Timeline: "タイムラインを挿入"
+  timelines:
+    composer_toolbar:
+      insert_button: "タイムラインを挿入"
+  js:
+    timelines:
+      composer_toolbar:
+        insert_button: "タイムラインを挿入"

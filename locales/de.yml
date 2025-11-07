@@ -1,0 +1,9 @@
+de:
+  Insert Timeline: "Zeitstrahl einfügen"
+  timelines:
+    composer_toolbar:
+      insert_button: "Zeitstrahl einfügen"
+  js:
+    timelines:
+      composer_toolbar:
+        insert_button: "Zeitstrahl einfügen"

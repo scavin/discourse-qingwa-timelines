@@ -1,0 +1,9 @@
+ko:
+  Insert Timeline: "타임라인 삽입"
+  timelines:
+    composer_toolbar:
+      insert_button: "타임라인 삽입"
+  js:
+    timelines:
+      composer_toolbar:
+        insert_button: "타임라인 삽입"
