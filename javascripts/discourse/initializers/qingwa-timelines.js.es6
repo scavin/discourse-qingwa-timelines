@@ -18,7 +18,7 @@ function initializeTimelines(api) {
   // Add composer toolbar button with working icon
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
-    icon: "history",
+    icon: "clock",
     label: "js.timelines.composer_toolbar.insert_button",
     translatedLabel: I18n.t("js.timelines.composer_toolbar.insert_button", {
       defaultValue: "Insert Timeline"
