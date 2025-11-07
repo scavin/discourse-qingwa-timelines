@@ -1,2 +1,5 @@
 en:
-  insert_timeline: "Insert Timeline"
+  js:
+    timelines:
+      composer_toolbar:
+        insert_button: "Insert Timeline"

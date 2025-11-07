@@ -1,2 +1,5 @@
 ru:
-  insert_timeline: "Вставить временную шкалу"
+  js:
+    timelines:
+      composer_toolbar:
+        insert_button: "Вставить временную шкалу"
