@@ -1,0 +1,53 @@
+[33m870b6de[m[33m ([m[1;34mgrafted[m[33m, [m[1;36mHEAD[m[33m -> [m[1;32mfix-insert-timeline-translation-locales[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Merge branch 'investigate-discourse-composer-toolbar-translation' into 'main'
+[33md3921ba[m[33m ([m[1;31morigin/investigate-discourse-composer-toolbar-translation[m[33m)[m fix(i18n): resolve composer toolbar button translation issue
+[33mb4b2720[m Merge branch 'fix-timeline-composer-toolbar-translation' into 'main'
+[33m1165d6c[m[33m ([m[1;31morigin/fix-timeline-composer-toolbar-translation[m[33m)[m fix(i18n): ensure composer toolbar button uses translation key
+[33ma570b13[m Merge branch 'restore-main-to-1bb595c8' into 'main'
+[33m1149449[m[33m ([m[1;31morigin/restore-main-to-1bb595c8[m[33m)[m revert(main): restore repository to commit 1bb595c8
+[33m357ffd3[m Merge branch 'revert-1f750867' into 'main'
+[33m25a4cd4[m Revert "Merge branch 'fix/timeline-dot-mobile-position' into 'main'"
+[33mc3df033[m Merge branch 'investigate/timeline-rendering-regression' into 'main'
+[33maff70b8[m[33m ([m[1;31morigin/investigate/timeline-rendering-regression[m[33m)[m fix(parser): restore robust timeline block parsing for post-stream compatibility
+[33m74b2754[m Merge branch 'debug-timeline-rendering-not-displaying' into 'main'
+[33m2315ba6[m[33m ([m[1;31morigin/debug-timeline-rendering-not-displaying[m[33m)[m fix(timeline-rendering): robust BBCode extraction and rendering for timelines
+[33m6dee588[m Merge branch 'fix-qingwa-timelines-post-stream-compat' into 'main'
+[33mf4fc65e[m[33m ([m[1;31morigin/fix-qingwa-timelines-post-stream-compat[m[33m)[m fix(qingwa-timelines): restore compatibility with new Discourse post-stream and fix translation issues
+[33mcfb94fd[m[33m ([m[1;31morigin/audit-post-stream-widget-overrides-compat-qingwa-timelines[m[33m)[m fix(compat): ensure plugin compatibility with Glimmer Post Stream
+[33m0abb254[m Merge branch 'fix-toolbar-button-label-add-en-locale' into 'main'
+[33m0ccf2d7[m[33m ([m[1;31morigin/fix-toolbar-button-label-add-en-locale[m[33m)[m fix(toolbar): add English translation file for toolbar button label
+[33m5167ca5[m Merge branch 'diag-toolbar-label-translation-behavior' into 'main'
+[33me3a7f10[m[33m ([m[1;31morigin/diag-toolbar-label-translation-behavior[m[33m)[m Add verification checklist for diagnostic setup
+[33m1f4ad57[m Implement diagnostic toolbar label behavior test
+[33mbb61c6d[m Merge branch 'remove-locales-and-i18n' into 'main'
+[33m9685502[m[33m ([m[1;31morigin/remove-locales-and-i18n[m[33m)[m refactor(i18n): remove all translation and i18n code, simplify to plain English
+[33ma28bcb8[m Merge branch 'fix/remove-discourse-theme-settings-import-use-plugin-api' into 'main'
+[33m3884fec[m[33m ([m[1;31morigin/fix/remove-discourse-theme-settings-import-use-plugin-api[m[33m)[m fix(initializer): remove invalid theme-settings import, hardcode toolbar button label
+[33m9d3fd28[m Merge branch 'bugfix-toolbar-button-label-read-settings' into 'main'
+[33mef92507[m[33m ([m[1;31morigin/bugfix-toolbar-button-label-read-settings[m[33m)[m fix(toolbar): robustly read and debug toolbar_button_label config
+[33m6f8bd13[m Merge branch 'feat/toolbar-button-label-setting-remove-i18n' into 'main'
+[33mc3c6206[m[33m ([m[1;31morigin/feat/toolbar-button-label-setting-remove-i18n[m[33m)[m feat(settings): add configurable toolbar button label and remove i18n logic
+[33m7086e54[m Merge branch 'fix-toolbar-button-label-use-string-or-lang-map' into 'main'
+[33mcea22da[m[33m ([m[1;31morigin/fix-toolbar-button-label-use-string-or-lang-map[m[33m)[m fix(toolbar): use language mapping for toolbar button label, not I18n defaults
+[33me6cecbd[m Merge branch 'fix-i18n-defaultvalue-insert-timeline' into 'main'
+[33m71aca2a[m[33m ([m[1;31morigin/fix-i18n-defaultvalue-insert-timeline[m[33m)[m fix(i18n): add Chinese defaultValue fallback for timeline toolbar button
+[33ma07668d[m Merge branch 'fix-timelines-toolbar-i18n' into 'main'
+[33mf6b3568[m[33m ([m[1;31morigin/fix-timelines-toolbar-i18n[m[33m)[m fix(composer-toolbar): ensure proper translation for timeline insert button
+[33m3305f59[m Merge branch 'fix-i18n-key-display-qingwa-timelines' into 'main'
+[33mb143a2a[m[33m ([m[1;31morigin/fix-i18n-key-display-qingwa-timelines[m[33m)[m fix(i18n): resolve toolbar translation key displaying instead of localized text
+[33m48ecfc3[m Merge branch 'i18n/add-timelines-locales' into 'main'
+[33mdda0078[m[33m ([m[1;31morigin/i18n/add-timelines-locales[m[33m)[m feat(locales): add comprehensive multilingual support for composer toolbar button
+[33m1bb595c[m Merge branch 'feat/add-timelines-composer-toolbar-button' into 'main'
+[33mac5e449[m[33m ([m[1;31morigin/feat/add-timelines-composer-toolbar-button[m[33m)[m feat(composer): add toolbar button for inserting timelines BBCode
+[33m1f75086[m[33m ([m[1;31morigin/rollback-discourse-qingwa-timelines-to-1f75086-e01[m[33m)[m Merge branch 'fix/timeline-dot-mobile-position' into 'main'
+[33md58b66c[m[33m ([m[1;31morigin/fix/timeline-dot-mobile-position[m[33m)[m fix(style): align timeline dot position on mobile devices
+[33m32a5baf[m Merge branch 'feat-qingwa-timelines-custom-colors' into 'main'
+[33m22e849d[m[33m ([m[1;31morigin/feat-qingwa-timelines-custom-colors[m[33m)[m feat(settings): add customizable color settings for timeline component
+[33m4fe9289[m Merge branch 'fix-timelines-h2-dot-left-calc-e01' into 'main'
+[33m99f90bd[m[33m ([m[1;31morigin/fix-timelines-h2-dot-left-calc-e01[m[33m)[m fix(styles): correct timeline dot position for H2 in qingwa-timelines
+[33mcdb1dad[m Merge branch 'feat/timelines-h2-enhance-dot-left-calc-2em-3px' into 'main'
+[33m08f4768[m[33m ([m[1;31morigin/feat/timelines-h2-enhance-dot-left-calc-2em-3px[m[33m)[m feat(styles): enhance timeline heading visibility and dot positioning
+[33m17de9dc[m Merge branch 'feat-timeline-node-markers' into 'main'
+[33m71ed220[m[33m ([m[1;31morigin/feat-timeline-node-markers[m[33m)[m feat(styles): enhance timeline visual with node markers and improved hierarchy
+[33m95cc24f[m Merge branch 'feat-discourse-qingwa-timelines' into 'main'
+[33me4d8905[m[33m ([m[1;31morigin/feat-discourse-qingwa-timelines[m[33m)[m feat(qingwa-timelines): add Discourse timeline BBCode component
+[33mca1832d[m Initial commit
