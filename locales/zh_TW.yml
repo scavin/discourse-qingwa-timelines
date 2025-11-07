@@ -1,2 +1,3 @@
 zh_TW:
-  insert_timeline_button: "插入時間軸"
+  timelines:
+    insert_button: "插入時間軸"

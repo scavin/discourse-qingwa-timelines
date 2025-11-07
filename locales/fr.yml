@@ -1,2 +1,3 @@
 fr:
-  insert_timeline_button: "Insérer une chronologie"
+  timelines:
+    insert_button: "Insérer une chronologie"

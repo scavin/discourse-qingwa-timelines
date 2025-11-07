@@ -1,2 +1,3 @@
 de:
-  insert_timeline_button: "Zeitstrahl einfügen"
+  timelines:
+    insert_button: "Zeitstrahl einfügen"

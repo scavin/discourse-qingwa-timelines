@@ -1,2 +1,3 @@
 en:
-  insert_timeline_button: "Insert Timeline"
+  timelines:
+    insert_button: "Insert Timeline"

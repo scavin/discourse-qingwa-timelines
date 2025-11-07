@@ -1,2 +1,3 @@
 ja:
-  insert_timeline_button: "タイムラインを挿入"
+  timelines:
+    insert_button: "タイムラインを挿入"
