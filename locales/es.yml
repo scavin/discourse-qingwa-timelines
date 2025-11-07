@@ -1,0 +1,9 @@
+es:
+  Insert Timeline: "Insertar línea de tiempo"
+  timelines:
+    composer_toolbar:
+      insert_button: "Insertar línea de tiempo"
+  js:
+    timelines:
+      composer_toolbar:
+        insert_button: "Insertar línea de tiempo"
