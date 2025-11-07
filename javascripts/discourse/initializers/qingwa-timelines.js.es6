@@ -19,8 +19,8 @@ function initializeTimelines(api) {
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "clock",
-    label: "timelines.insert_button",
-    translatedLabel: I18n.t("timelines.insert_button", {
+    label: "insert_timeline",
+    translatedLabel: I18n.t("insert_timeline", {
       defaultValue: "Insert Timeline"
     })
   });
