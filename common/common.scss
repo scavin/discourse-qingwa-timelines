@@ -135,7 +135,7 @@
       margin-top: 2em; // Slightly reduced spacing for mobile
       
       &::before {
-        left: calc(-1.7em + 2px); // 移动端位置
+        left: calc(-1.7em - 3px); // Adjust for mobile line position
         width: 8px;
         height: 8px;
       }
