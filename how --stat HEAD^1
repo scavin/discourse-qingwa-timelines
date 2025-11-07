@@ -1,0 +1,33 @@
+[33mcommit 6dee58858a9a90dcd319e3194f6c53652ec4413d[m[33m ([m[1;34mgrafted[m[33m, [m[1;36mHEAD[m[33m -> [m[1;32minvestigate/timeline-rendering-regression[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: scavin <scavina@gmail.com>
+Date:   Fri Nov 7 08:27:50 2025 +0000
+
+    Merge branch 'fix-qingwa-timelines-post-stream-compat' into 'main'
+    
+    Fix Discourse post-stream compatibility and translation in qingwa-timelines plugin
+    
+    See merge request scavin/discourse-qingwa-timelines!20
+
+ .gitignore                                         |  22 [32m+++[m
+ DIAGNOSTIC_SETUP.md                                | 101 [32m+++++++++++[m
+ LICENSE                                            |  21 [32m+++[m
+ README.md                                          |  91 [32m++++++++++[m
+ VERIFICATION_CHECKLIST.md                          |  81 [32m+++++++++[m
+ about.json                                         |  11 [32m++[m
+ common/common.scss                                 | 188 [32m+++++++++++++++++++++[m
+ .../discourse/initializers/qingwa-timelines.js.es6 |  77 [32m+++++++++[m
+ locales/en.yml                                     |   4 [32m+[m
+ settings.yml                                       |  29 [32m++++[m
+ test-timeline.html                                 |  70 [32m++++++++[m
+ 11 files changed, 695 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 DIAGNOSTIC_SETUP.md
+ create mode 100644 LICENSE
+ create mode 100644 README.md
+ create mode 100644 VERIFICATION_CHECKLIST.md
+ create mode 100644 about.json
+ create mode 100644 common/common.scss
+ create mode 100644 javascripts/discourse/initializers/qingwa-timelines.js.es6
+ create mode 100644 locales/en.yml
+ create mode 100644 settings.yml
+ create mode 100644 test-timeline.html
