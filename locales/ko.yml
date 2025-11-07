@@ -1,2 +1,5 @@
 ko:
-  insert_timeline: "타임라인 삽입"
+  js:
+    timelines:
+      composer_toolbar:
+        insert_button: "타임라인 삽입"

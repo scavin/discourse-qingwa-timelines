@@ -1,2 +1,5 @@
 fr:
-  insert_timeline: "Insérer une chronologie"
+  js:
+    timelines:
+      composer_toolbar:
+        insert_button: "Insérer une chronologie"
