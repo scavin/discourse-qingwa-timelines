@@ -1,75 +1,74 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
 export default {
-  name: "qingwa-timelines-diagnostic",
+  name: "qingwa-timelines",
   
   initialize() {
-    console.log("=== Qingwa Timelines Diagnostic ===");
-    console.log("Discourse version:", Discourse.VERSION);
-    console.log("withPluginApi available:", typeof withPluginApi);
-    
     withPluginApi("0.8.31", api => {
-      console.log("Plugin API initialized");
+      // Render timelines
+      api.decorateCooked(($elem, helper) => {
+        if (helper.widget) {
+          return;
+        }
+        
+        const timelineBlocks = $elem.find("p").filter(function() {
+          return $(this).text().includes("[timelines]");
+        });
+        
+        timelineBlocks.each(function() {
+          const $block = $(this);
+          const text = $block.text();
+          const match = text.match(/\[timelines\]([\s\S]*?)\[\/timelines\]/);
+          
+          if (match) {
+            const content = match[1];
+            const $timeline = $('<div class="qingwa-timelines"></div>');
+            
+            const lines = content.split('\n');
+            let html = '';
+            lines.forEach(line => {
+              if (line.trim().startsWith('## ')) {
+                html += `<h2>${line.trim().substring(3)}</h2>`;
+              } else if (line.trim()) {
+                html += `<p>${line.trim()}</p>`;
+              }
+            });
+            
+            $timeline.html(html);
+            $block.replaceWith($timeline);
+          }
+        });
+      });
       
-      // Test 1: 普通英文字符串
-      console.log("TEST 1: Adding button with label 'Insert Timeline'");
-      
+      // Toolbar button - use translation key
       api.addComposerToolbarPopupMenuOption({
         action: "insertTimelines",
         icon: "stream",
-        label: "Insert Timeline"
+        label: "timelines.composer_toolbar.insert_button"
       });
       
-      console.log("TEST 1: Button added");
-      
-      // Test 2: 不同字符串
-      console.log("Adding test button 2...");
-      api.addComposerToolbarPopupMenuOption({
-        action: "test2",
-        icon: "star",
-        label: "HelloWorld"  // 无空格的字符串
-      });
-      
-      // Test 3: 单字符
-      console.log("Adding test button 3...");
-      api.addComposerToolbarPopupMenuOption({
-        action: "test3",
-        icon: "heart",
-        label: "X"  // 最简单的字符串
-      });
-      
-      // Test 4: 不设置 label
-      console.log("Adding test button 4...");
-      api.addComposerToolbarPopupMenuOption({
-        action: "test4",
-        icon: "info",
-        // label: undefined  // 不设置 label
-      });
-      
-      console.log("All test buttons added");
-      
-      // Simple actions
+      // Button action
       api.modifyClass("controller:composer", {
         pluginId: "discourse-qingwa-timelines",
         
         actions: {
           insertTimelines() {
-            console.log("Button 'Insert Timeline' clicked");
             const model = this.get("model");
-            const text = "[timelines]\n## Title\nContent\n[/timelines]";
-            model.appendText(text, null, { new_line: true });
-          },
-          
-          test2() {
-            console.log("Test 2 clicked");
-          },
-          
-          test3() {
-            console.log("Test 3 clicked");
-          },
-          
-          test4() {
-            console.log("Test 4 clicked");
+            const selected = model.get("reply").substring(
+              model.get("replySelection.start"),
+              model.get("replySelection.end")
+            );
+            
+            const defaultTemplate = `## 2024年1月 - 项目启动
+项目正式立项，组建团队...
+
+## 2024年3月 - 第一版发布
+完成核心功能开发...`;
+            
+            const content = selected || defaultTemplate;
+            const insertion = `[timelines]\n${content}\n[/timelines]`;
+            
+            model.appendText(insertion, null, { new_line: true });
           }
         }
       });
