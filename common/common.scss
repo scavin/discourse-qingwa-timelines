@@ -11,7 +11,7 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(to bottom, $timeline_gradient_start, $timeline_gradient_end);
+    background: linear-gradient(to bottom, var(--timeline_gradient_start, #ff7a18), var(--timeline_gradient_end, #ffb800));
   }
 
   > * {
@@ -34,7 +34,7 @@
     position: relative;
     font-size: 1.35em; // Significantly larger to stand out
     font-weight: 700; // Bold for emphasis
-    color: $timeline_heading_color;
+    color: var(--timeline_heading_color, #d96d14);
     margin-top: 2.5em; // More spacing from previous section
     margin-bottom: 1em; // Proper spacing to content
     line-height: 1.4;
@@ -54,7 +54,7 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: $timeline_dot_color;
+      background: var(--timeline_dot_color, #ff7a18);
       border: 2px solid #fff;
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
       z-index: 1;
@@ -148,15 +148,11 @@
 body.dark-mode {
   .qingwa-timelines {
     h2 {
-      color: $timeline_heading_color_dark;
+      color: var(--timeline_heading_color_dark, #ff9854);
     }
 
     h2::before {
-      @if $timeline_dot_border_color_dark != "" {
-        border-color: $timeline_dot_border_color_dark;
-      } @else {
-        border-color: var(--secondary);
-      }
+      border-color: var(--timeline_dot_border_color_dark, var(--secondary));
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
     }
 

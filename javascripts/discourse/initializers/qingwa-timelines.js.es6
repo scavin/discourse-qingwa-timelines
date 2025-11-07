@@ -1,4 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import I18n from "I18n";
 
 export default {
   name: "qingwa-timelines",
@@ -6,13 +7,11 @@ export default {
   initialize() {
     withPluginApi("0.8.31", api => {
       // Render timelines
-      api.decorateCooked(($elem, helper) => {
-        if (helper.widget) {
-          return;
-        }
-        
-        const timelineBlocks = $elem.find("p").filter(function() {
-          return $(this).text().includes("[timelines]");
+      api.decorateCooked(($elem) => {
+        // Find all elements containing timeline BBCode
+        const timelineBlocks = $elem.find("*").filter(function() {
+          const text = $(this).text();
+          return text.includes("[timelines]") && text.includes("[/timelines]");
         });
         
         timelineBlocks.each(function() {
@@ -24,13 +23,14 @@ export default {
             const content = match[1];
             const $timeline = $('<div class="qingwa-timelines"></div>');
             
-            const lines = content.split('\n');
+            const lines = content.split('\n').filter(line => line.trim());
             let html = '';
             lines.forEach(line => {
-              if (line.trim().startsWith('## ')) {
-                html += `<h2>${line.trim().substring(3)}</h2>`;
-              } else if (line.trim()) {
-                html += `<p>${line.trim()}</p>`;
+              const trimmedLine = line.trim();
+              if (trimmedLine.startsWith('## ')) {
+                html += `<h2>${trimmedLine.substring(3).trim()}</h2>`;
+              } else if (trimmedLine) {
+                html += `<p>${trimmedLine}</p>`;
               }
             });
             
@@ -40,11 +40,11 @@ export default {
         });
       });
       
-      // Toolbar button - use translation key
+      // Toolbar button - use translation with defaultValue
       api.addComposerToolbarPopupMenuOption({
         action: "insertTimelines",
         icon: "stream",
-        label: "timelines.composer_toolbar.insert_button"
+        label: I18n.t("timelines.composer_toolbar.insert_button", { defaultValue: "Insert Timeline" })
       });
       
       // Button action
