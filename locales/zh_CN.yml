@@ -3,3 +3,5 @@ zh_CN:
     timelines:
       composer_toolbar:
         insert_button: "插入时间轴"
+        test_button_1: "✓ 测试1 (无前缀)"
+        test_button_2: "✓ 测试2 (js.前缀)"

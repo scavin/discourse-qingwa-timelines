@@ -15,12 +15,26 @@ function initializeTimelines(api) {
     $elem.addClass("qingwa-timelines-processed");
   }, { id: "qingwa-timelines" });
 
-  // Add composer toolbar button with translated label
-  // Pass translation key directly - Discourse API handles the translation
+  // TEST: Three different translation approaches to find the working one
+  // Test Button 1: Translation key without js. prefix
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "clock",
-    label: "timelines.composer_toolbar.insert_button"
+    label: "timelines.composer_toolbar.test_button_1"
+  });
+
+  // Test Button 2: Translation key with js. prefix
+  api.addComposerToolbarPopupMenuOption({
+    action: "insertTimelines",
+    icon: "far-clock",
+    label: "js.timelines.composer_toolbar.test_button_2"
+  });
+
+  // Test Button 3: Hardcoded string (control group)
+  api.addComposerToolbarPopupMenuOption({
+    action: "insertTimelines",
+    icon: "history",
+    label: "Test Button 3"
   });
 
   // Register the insert action
