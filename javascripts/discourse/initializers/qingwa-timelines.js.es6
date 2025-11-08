@@ -1,4 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import I18n from "I18n";
 
 function initializeTimelines(api) {
   api.decorateCooked($elem => {
@@ -15,11 +16,13 @@ function initializeTimelines(api) {
     $elem.addClass("qingwa-timelines-processed");
   }, { id: "qingwa-timelines" });
 
-  // Add composer toolbar button with working icon
+  // Add composer toolbar button with translated label
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "clock",
-    label: "Insert Timeline"
+    label: I18n.t("js.timelines.composer_toolbar.insert_button", {
+      defaultValue: "Insert Timeline"
+    })
   });
 
   // Register the insert action
