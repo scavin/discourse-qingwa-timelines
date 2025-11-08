@@ -1,12 +1,8 @@
 # Discourse Timelines - Custom BBCode for Beautiful Timeline Layouts
 
-I'm excited to share my **first theme component** that adds elegant timeline layouts to your Discourse community!
+I'm excited to share a new theme component that adds elegant timeline layouts to your Discourse community!
 
-## :wave: A Personal Note
-
-This is my first Discourse theme component, and I'm thrilled to share it with the community! As someone new to Discourse development, I built this with the assistance of Claude (Anthropic's AI), which helped me navigate the learning curve of theme component development, understand the translation system, and implement best practices.
-
-The journey from idea to working component was an incredible learning experience, and I hope this can inspire others who are considering building their first component. If I can do it with AI assistance, you can too! :rocket:
+This is my first theme component, built with the assistance of LLM.
 
 ## What is it?
 
@@ -169,20 +165,7 @@ Contributions are welcome! Feel free to:
 
 Developed with :heart: using Discourse's powerful theme component system.
 
-**Special Thanks:**
-- The Discourse team for creating such an extensible and well-documented platform
-- Claude (Anthropic's AI) for assistance with development, debugging, and best practices
-- The Discourse Meta community for the wealth of knowledge and examples
-
-**Development Story:**
-
-As my first theme component, this project taught me a lot about:
-- Discourse's `decorateCooked` API and plugin architecture
-- Theme component vs plugin translation systems (very different!)
-- The `themePrefix()` function and theme-namespaced translations
-- How AI-assisted development can accelerate learning
-
-If you're considering building your first component, I highly encourage you to try! The Discourse documentation combined with AI assistance makes it much more accessible than you might think.
+Special thanks to the Discourse team for creating such an extensible platform!
 
 ---
 
