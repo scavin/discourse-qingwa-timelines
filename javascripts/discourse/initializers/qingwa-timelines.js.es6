@@ -1,7 +1,12 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import I18n from "I18n";
 
+// EARLY DEBUG: Verify script loads
+console.log("🔍 TIMELINE DEBUG: Script loaded!");
+
 function initializeTimelines(api) {
+  console.log("🔍 TIMELINE DEBUG: initializeTimelines called!");
+
   api.decorateCooked($elem => {
     if ($elem.hasClass("qingwa-timelines-processed")) {
       return;
@@ -17,6 +22,7 @@ function initializeTimelines(api) {
   }, { id: "qingwa-timelines" });
 
   // DEBUG: Log translation key information
+  console.log("🔍 TIMELINE DEBUG: About to check translations...");
   const translationKey = themePrefix("composer_toolbar.insert_button");
   const translatedValue = I18n.t(translationKey);
   console.log("=== Timeline Button Translation Debug ===");
@@ -27,6 +33,7 @@ function initializeTimelines(api) {
 
   // Add composer toolbar button - trying multiple approaches
   // Attempt 1: Direct themePrefix
+  console.log("🔍 TIMELINE DEBUG: Adding toolbar button...");
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "clock",
@@ -97,8 +104,9 @@ function processTimelinesInElement(element) {
 
 export default {
   name: "qingwa-timelines",
-  
+
   initialize() {
+    console.log("🔍 TIMELINE DEBUG: initialize() called!");
     withPluginApi("0.8.31", initializeTimelines);
   }
 };
