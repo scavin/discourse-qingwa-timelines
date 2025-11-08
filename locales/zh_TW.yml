@@ -1,3 +1,8 @@
 zh_TW:
   composer_toolbar:
     insert_button: "插入時間軌"
+    default_template: |
+      ## 標題 1
+      內容...
+      ## 標題 2
+      內容...

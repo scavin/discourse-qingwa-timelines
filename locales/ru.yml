@@ -1,3 +1,8 @@
 ru:
   composer_toolbar:
     insert_button: "Вставить временную шкалу"
+    default_template: |
+      ## Заголовок 1
+      Содержание...
+      ## Заголовок 2
+      Содержание...

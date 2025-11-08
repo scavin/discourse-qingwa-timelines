@@ -1,4 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import I18n from "I18n";
 
 function initializeTimelines(api) {
   // Decorate cooked content to process [timelines] BBCode
@@ -36,7 +37,11 @@ function initializeTimelines(api) {
           this.get("model.replySelection.end")
         );
 
-        const text = selected || "## 标题\n内容...";
+        // Get localized default template
+        const defaultTemplate = I18n.t(
+          themePrefix("composer_toolbar.default_template")
+        );
+        const text = selected || defaultTemplate;
         const insertion = `[timelines]\n${text}\n[/timelines]`;
 
         this.get("model").appendText(insertion, null, {

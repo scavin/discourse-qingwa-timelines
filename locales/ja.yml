@@ -1,3 +1,8 @@
 ja:
   composer_toolbar:
     insert_button: "タイムラインを挿入"
+    default_template: |
+      ## 見出し 1
+      内容...
+      ## 見出し 2
+      内容...

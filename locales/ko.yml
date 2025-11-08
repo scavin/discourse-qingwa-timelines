@@ -1,3 +1,8 @@
 ko:
   composer_toolbar:
     insert_button: "타임라인 삽입"
+    default_template: |
+      ## 제목 1
+      내용...
+      ## 제목 2
+      내용...

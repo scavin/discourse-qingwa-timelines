@@ -1,3 +1,8 @@
 de:
   composer_toolbar:
     insert_button: "Zeitstrahl einfügen"
+    default_template: |
+      ## Überschrift 1
+      Inhalt...
+      ## Überschrift 2
+      Inhalt...

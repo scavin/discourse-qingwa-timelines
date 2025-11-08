@@ -1,3 +1,8 @@
 es:
   composer_toolbar:
     insert_button: "Insertar línea de tiempo"
+    default_template: |
+      ## Título 1
+      Contenido...
+      ## Título 2
+      Contenido...

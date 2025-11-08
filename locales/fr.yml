@@ -1,3 +1,8 @@
 fr:
   composer_toolbar:
     insert_button: "Insérer une chronologie"
+    default_template: |
+      ## Titre 1
+      Contenu...
+      ## Titre 2
+      Contenu...
