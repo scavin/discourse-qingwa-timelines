@@ -29,7 +29,7 @@ A Discourse theme component that implements custom BBCode `[timelines]...[/timel
 3. Click **"From a git repository"**
 4. Enter the repository URL:
    ```
-   https://gitlab.com/scavin/discourse-qingwa-timelines
+   https://github.com/scavin/discourse-qingwa-timelines
    ```
 5. Click **Install**
 6. Enable the component on your active theme
@@ -213,7 +213,7 @@ MIT License - see LICENSE file for details
 ### Support
 
 For issues, questions, or feature requests, please visit:
-- GitLab Issues: https://gitlab.com/scavin/discourse-qingwa-timelines/-/issues
+- GitHub Issues: https://github.com/scavin/discourse-qingwa-timelines/issues
 
 ### Contributing
 
@@ -246,7 +246,7 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 3. 点击 **"从 git 仓库安装"**
 4. 输入仓库地址：
    ```
-   https://gitlab.com/scavin/discourse-qingwa-timelines
+   https://github.com/scavin/discourse-qingwa-timelines
    ```
 5. 点击 **安装**
 6. 在活动主题上启用该组件
@@ -430,7 +430,7 @@ MIT 许可证 - 详见 LICENSE 文件
 ### 支持
 
 如有问题、疑问或功能请求，请访问：
-- GitLab Issues: https://gitlab.com/scavin/discourse-qingwa-timelines/-/issues
+- GitHub Issues: https://github.com/scavin/discourse-qingwa-timelines/issues
 
 ### 贡献
 
