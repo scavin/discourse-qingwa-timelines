@@ -1,5 +1,4 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import I18n from "I18n";
 
 function initializeTimelines(api) {
   api.decorateCooked($elem => {
@@ -16,12 +15,12 @@ function initializeTimelines(api) {
     $elem.addClass("qingwa-timelines-processed");
   }, { id: "qingwa-timelines" });
 
-  // Add composer toolbar button with properly translated label
-  // themePrefix() is a global function that namespaces translation keys for theme components
+  // Add composer toolbar button with theme-prefixed translation key
+  // Pass themePrefix() result directly - API handles translation internally
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "clock",
-    label: I18n.t(themePrefix("composer_toolbar.insert_button"))
+    label: themePrefix("composer_toolbar.insert_button")
   });
 
   // Register the insert action
