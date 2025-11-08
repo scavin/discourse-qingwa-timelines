@@ -1,5 +1,4 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import I18n from "I18n";
 
 function initializeTimelines(api) {
   api.decorateCooked($elem => {
@@ -17,12 +16,11 @@ function initializeTimelines(api) {
   }, { id: "qingwa-timelines" });
 
   // Add composer toolbar button with translated label
+  // Pass translation key directly - Discourse API handles the translation
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "clock",
-    label: I18n.t("js.timelines.composer_toolbar.insert_button", {
-      defaultValue: "Insert Timeline"
-    })
+    label: "timelines.composer_toolbar.insert_button"
   });
 
   // Register the insert action
