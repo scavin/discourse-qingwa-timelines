@@ -2,6 +2,10 @@
 
 A Discourse theme component that implements custom BBCode `[timelines]...[/timelines]` for creating beautiful timeline layouts.
 
+
+:eyeglasses:	Preview	https://meta.appinn.net/t/topic/76953  
+:hammer_and_wrench:	Repository	https://github.com/scavin/discourse-qingwa-timelines/
+
 English | [中文](README_CN.md)
 
 ---
