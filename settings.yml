@@ -16,8 +16,15 @@ timeline_heading_color:
   default: "#d96d14"
   type: string
   description:
-    en: "Timeline heading color"
-    zh_CN: "时间轴标题颜色"
+    en: "Timeline H2 heading color"
+    zh_CN: "时间轴 H2 标题颜色"
+
+timeline_h3_color:
+  default: "#e39757"
+  type: string
+  description:
+    en: "Timeline H3 heading color (lighter than H2)"
+    zh_CN: "时间轴 H3 标题颜色（比 H2 更淡）"
 
 timeline_dot_color:
   default: "#ff7a18"
@@ -30,8 +37,15 @@ timeline_heading_color_dark:
   default: "#ff9854"
   type: string
   description:
-    en: "Timeline heading color in dark mode"
-    zh_CN: "深色模式下的时间轴标题颜色"
+    en: "Timeline H2 heading color in dark mode"
+    zh_CN: "深色模式下的 H2 标题颜色"
+
+timeline_h3_color_dark:
+  default: "#ffb380"
+  type: string
+  description:
+    en: "Timeline H3 heading color in dark mode (lighter than H2)"
+    zh_CN: "深色模式下的 H3 标题颜色（比 H2 更淡）"
 
 timeline_dot_border_color_dark:
   default: ""
