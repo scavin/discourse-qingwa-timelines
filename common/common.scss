@@ -72,14 +72,13 @@
     &::before {
       content: '';
       position: absolute;
-      left: calc(-2em + 6px); // Centered on the line
+      left: calc(-2em + 3px);
       top: 50%;
       transform: translateY(-50%);
-      width: 6px;
-      height: 6px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: $timeline_dot_color;
-      opacity: 0.7; // Slightly transparent
       z-index: 1;
     }
   }
@@ -168,9 +167,9 @@
       font-size: 1.15em;
 
       &::before {
-        left: calc(-1.7em + 3px); // 移动端位置
-        width: 5px;
-        height: 5px;
+        left: calc(-1.7em + 1px);
+        width: 8px;
+        height: 8px;
       }
     }
   }
