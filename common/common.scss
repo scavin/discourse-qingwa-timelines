@@ -141,6 +141,14 @@
   em, i {
     font-style: italic;
   }
+
+  // Image styling for timeline images
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.75em 0;
+  }
 }
 
 // Responsive design for mobile
