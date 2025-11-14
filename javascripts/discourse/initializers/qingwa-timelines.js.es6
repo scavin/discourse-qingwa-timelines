@@ -79,6 +79,24 @@ function processTimelinesInElement(element) {
       container.parentNode.replaceChild(textNode, container);
     });
 
+    // Convert image links to actual images
+    const imageLinks = temp.querySelectorAll('.qingwa-timelines a');
+    imageLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      const text = link.textContent.trim();
+
+      // Only convert if:
+      // 1. href points to an image (by extension)
+      // 2. link text equals URL (pure URL paste, not custom text)
+      if (href && text === href && /\.(png|jpe?g|gif|webp|svg|bmp)(\?.*)?$/i.test(href)) {
+        const img = document.createElement('img');
+        img.src = href;
+        img.alt = '';
+        img.loading = 'lazy';  // Native lazy loading
+        link.parentNode.replaceChild(img, link);
+      }
+    });
+
     element.innerHTML = temp.innerHTML;
   }
 }
