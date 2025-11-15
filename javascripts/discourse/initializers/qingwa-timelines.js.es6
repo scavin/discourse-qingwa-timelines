@@ -53,51 +53,71 @@ function initializeTimelines(api) {
 }
 
 function processTimelinesInElement(element) {
-  let html = element.innerHTML;
+  try {
+    // Null/undefined check
+    if (!element || !element.innerHTML) {
+      return;
+    }
 
-  // Check if already processed (idempotency)
-  if (html.includes('class="qingwa-timelines"')) {
-    return;
-  }
+    let html = element.innerHTML;
 
-  // Process [timelines]...[/timelines] blocks
-  const timelinesRegex = /\[timelines\]([\s\S]*?)\[\/timelines\]/g;
-  html = html.replace(timelinesRegex, (match, content) => {
-    return '<div class="qingwa-timelines">' + content.trim() + '</div>';
-  });
+    // Content size limit (1MB) to prevent performance issues
+    if (html.length > 1000000) {
+      console.warn('[qingwa-timelines] Content too large, skipping processing');
+      return;
+    }
 
-  // Only update if changes were made
-  if (html !== element.innerHTML) {
-    const temp = document.createElement('div');
-    temp.innerHTML = html;
+    // Check if already processed (idempotency)
+    if (html.includes('class="qingwa-timelines"')) {
+      return;
+    }
 
-    // Remove timelines blocks inside code/pre/blockquote elements
-    const forbiddenContainers = temp.querySelectorAll('code .qingwa-timelines, pre .qingwa-timelines, blockquote .qingwa-timelines');
-    forbiddenContainers.forEach(container => {
-      const originalText = '[timelines]' + container.innerHTML + '[/timelines]';
-      const textNode = document.createTextNode(originalText);
-      container.parentNode.replaceChild(textNode, container);
+    // Process [timelines]...[/timelines] blocks
+    const timelinesRegex = /\[timelines\]([\s\S]*?)\[\/timelines\]/g;
+    html = html.replace(timelinesRegex, (match, content) => {
+      return '<div class="qingwa-timelines">' + content.trim() + '</div>';
     });
 
-    // Convert image links to actual images
-    const imageLinks = temp.querySelectorAll('.qingwa-timelines a');
-    imageLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      const text = link.textContent.trim();
+    // Only update if changes were made
+    if (html !== element.innerHTML) {
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
 
-      // Only convert if:
-      // 1. href points to an image (by extension)
-      // 2. link text equals URL (pure URL paste, not custom text)
-      if (href && text === href && /\.(png|jpe?g|gif|webp|svg|bmp)(\?.*)?$/i.test(href)) {
-        const img = document.createElement('img');
-        img.src = href;
-        img.alt = '';
-        img.loading = 'lazy';  // Native lazy loading
-        link.parentNode.replaceChild(img, link);
-      }
-    });
+      // Remove timelines blocks inside code/pre/blockquote elements
+      const forbiddenContainers = temp.querySelectorAll('code .qingwa-timelines, pre .qingwa-timelines, blockquote .qingwa-timelines');
+      forbiddenContainers.forEach(container => {
+        const originalText = '[timelines]' + container.innerHTML + '[/timelines]';
+        const textNode = document.createTextNode(originalText);
+        container.parentNode.replaceChild(textNode, container);
+      });
 
-    element.innerHTML = temp.innerHTML;
+      // Convert image links to actual images
+      const imageLinks = temp.querySelectorAll('.qingwa-timelines a');
+      imageLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        const text = link.textContent.trim();
+
+        // Only convert if:
+        // 1. href uses http/https protocol (security)
+        // 2. href points to an image (by extension, SVG removed for security)
+        // 3. link text equals URL (pure URL paste, not custom text)
+        if (href &&
+            text === href &&
+            /^https?:\/\//i.test(href) &&
+            /\.(png|jpe?g|gif|webp|bmp)(\?.*)?$/i.test(href)) {
+          const img = document.createElement('img');
+          img.src = href;
+          img.alt = '';
+          img.loading = 'lazy';  // Native lazy loading
+          link.parentNode.replaceChild(img, link);
+        }
+      });
+
+      element.innerHTML = temp.innerHTML;
+    }
+  } catch (error) {
+    // Error handling - log but don't break other functionality
+    console.error('[qingwa-timelines] Error processing timelines:', error);
   }
 }
 
