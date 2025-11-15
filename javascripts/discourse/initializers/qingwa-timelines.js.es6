@@ -101,10 +101,11 @@ function processTimelinesInElement(element) {
         // 1. href uses http/https protocol (security)
         // 2. href points to an image (by extension, SVG removed for security)
         // 3. link text equals URL (pure URL paste, not custom text)
+        // Supported formats: png, jpg, jpeg, gif, webp, bmp, avif
         if (href &&
             text === href &&
             /^https?:\/\//i.test(href) &&
-            /\.(png|jpe?g|gif|webp|bmp)(\?.*)?$/i.test(href)) {
+            /\.(png|jpe?g|gif|webp|bmp|avif)(\?.*)?$/i.test(href)) {
           const img = document.createElement('img');
           img.src = href;
           img.alt = '';
