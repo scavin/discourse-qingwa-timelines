@@ -17,38 +17,78 @@ function initializeTimelines(api) {
     $elem.addClass("qingwa-timelines-processed");
   }, { id: "qingwa-timelines" });
 
-  // Add composer toolbar button with translated label
+  // Add composer toolbar button with translated label and inline handler
   // themePrefix() generates theme-namespaced translation key
   // e.g., "theme_translations.137.composer_toolbar.insert_button"
   api.addComposerToolbarPopupMenuOption({
-    action: "insertTimelines",
     icon: "clock",
-    label: themePrefix("composer_toolbar.insert_button")
-  });
-
-  // Register the insert action for the toolbar button
-  api.modifyClass("controller:composer", {
-    pluginId: "discourse-qingwa-timelines",
-
-    actions: {
-      insertTimelines() {
-        const selected = this.get("model.reply").substring(
-          this.get("model.replySelection.start"),
-          this.get("model.replySelection.end")
-        );
-
-        // Get localized default template
-        const defaultTemplate = I18n.t(
-          themePrefix("composer_toolbar.default_template")
-        );
-        const text = selected || defaultTemplate;
-        const insertion = `[timelines]\n${text}\n[/timelines]`;
-
-        this.get("model").appendText(insertion, null, {
-          new_line: true
-        });
-      }
+    label: themePrefix("composer_toolbar.insert_button"),
+    perform(toolbarEvent) {
+      insertTimelinesFromToolbar(toolbarEvent);
     }
+  });
+}
+
+function insertTimelinesFromToolbar(toolbarEvent) {
+  if (!toolbarEvent) {
+    return;
+  }
+
+  const defaultTemplate = I18n.t(
+    themePrefix("composer_toolbar.default_template")
+  );
+  const openingTag = "[timelines]\n";
+  const closingTag = "\n[/timelines]\n";
+
+  if (typeof toolbarEvent.applySurround === "function") {
+    toolbarEvent.applySurround(openingTag, closingTag, defaultTemplate);
+    return;
+  }
+
+  appendTimelinesViaComposer(
+    toolbarEvent.composer || toolbarEvent.controller,
+    openingTag,
+    closingTag,
+    defaultTemplate
+  );
+}
+
+function appendTimelinesViaComposer(
+  composerController,
+  openingTag,
+  closingTag,
+  defaultTemplate
+) {
+  if (!composerController) {
+    return;
+  }
+
+  const model =
+    (typeof composerController.get === "function" &&
+      composerController.get("model")) ||
+    composerController.model;
+
+  if (!model || typeof model.appendText !== "function") {
+    return;
+  }
+
+  const reply = model.reply || "";
+  const selection = model.replySelection;
+  let selectedText = "";
+
+  if (
+    selection &&
+    typeof selection.start === "number" &&
+    typeof selection.end === "number"
+  ) {
+    selectedText = reply.substring(selection.start, selection.end);
+  }
+
+  const content = selectedText || defaultTemplate;
+  const insertion = `${openingTag}${content}${closingTag}`;
+
+  model.appendText(insertion, null, {
+    new_line: true
   });
 }
 
