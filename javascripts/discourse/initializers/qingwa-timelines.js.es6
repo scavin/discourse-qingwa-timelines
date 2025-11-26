@@ -31,9 +31,7 @@ function initializeTimelines(api) {
 }
 
 function insertTimelinesFromToolbar(toolbarEvent) {
-  const defaultTemplate = I18n.t(
-    themePrefix("composer_toolbar.default_template")
-  );
+  const defaultTemplate = getDefaultTimelineTemplate();
   const openingTag = "[timelines]\n";
   const closingTag = "\n[/timelines]\n";
 
@@ -56,6 +54,20 @@ function insertTimelinesFromToolbar(toolbarEvent) {
     closingTag,
     defaultTemplate
   );
+}
+
+function getDefaultTimelineTemplate() {
+  const translation = I18n.t(themePrefix("composer_toolbar.default_template"));
+  const trimmed = typeof translation === "string" ? translation.trim() : "";
+  const looksMissing =
+    trimmed.startsWith("[") && trimmed.endsWith("]") && trimmed.includes(".");
+
+  if (looksMissing || !trimmed) {
+    // Neutral fallback across locales to avoid showing raw translation keys
+    return "## Heading 1\nContent...\n## Heading 2\nContent...";
+  }
+
+  return translation;
 }
 
 function appendTimelinesViaComposer(
