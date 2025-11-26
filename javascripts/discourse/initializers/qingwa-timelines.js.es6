@@ -17,15 +17,18 @@ function initializeTimelines(api) {
     $elem.addClass("qingwa-timelines-processed");
   }, { id: "qingwa-timelines" });
 
-  // Add composer toolbar button with translated label and inline handler
+  // Add composer toolbar button via toolbar callback to avoid controller reopen
   // themePrefix() generates theme-namespaced translation key
   // e.g., "theme_translations.137.composer_toolbar.insert_button"
-  api.addComposerToolbarPopupMenuOption({
-    icon: "clock",
-    label: themePrefix("composer_toolbar.insert_button"),
-    perform(toolbarEvent) {
-      insertTimelinesFromToolbar(toolbarEvent);
-    }
+  api.onToolbarCreate(toolbar => {
+    toolbar.addPopupMenuOptionsCallback(() => ({
+      id: "insert-timelines",
+      icon: "clock",
+      label: themePrefix("composer_toolbar.insert_button"),
+      perform(toolbarEvent) {
+        insertTimelinesFromToolbar(toolbarEvent);
+      }
+    }));
   });
 }
 
