@@ -2,6 +2,8 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 import I18n from "I18n";
 
 function initializeTimelines(api) {
+  const composerApi = api.composer || api;
+
   // Decorate cooked content to process [timelines] BBCode
   api.decorateCooked($elem => {
     if ($elem.hasClass("qingwa-timelines-processed")) {
@@ -20,7 +22,7 @@ function initializeTimelines(api) {
   // Add composer toolbar button with a named action; handler registered via addComposerAction
   // themePrefix() generates theme-namespaced translation key
   // e.g., "theme_translations.137.composer_toolbar.insert_button"
-  api.addComposerToolbarPopupMenuOption({
+  composerApi.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "clock",
     label: themePrefix("composer_toolbar.insert_button"),
@@ -29,11 +31,11 @@ function initializeTimelines(api) {
     }
   });
 
-  if (typeof api.addComposerAction === "function") {
-    api.addComposerAction("insertTimelines", insertTimelinesFromToolbar);
+  if (typeof composerApi.addComposerAction === "function") {
+    composerApi.addComposerAction("insertTimelines", insertTimelinesFromToolbar);
   } else {
     // Fallback: attach action directly on composer controller instance
-    ensureComposerAction(api);
+    ensureComposerAction(composerApi);
   }
 }
 
