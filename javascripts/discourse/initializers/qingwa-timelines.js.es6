@@ -32,10 +32,9 @@ function initializeTimelines(api) {
 
 function insertTimelinesFromToolbar(toolbarEvent) {
   const defaultTemplate = getDefaultTimelineTemplate();
+  const placeholderKey = ensurePlaceholderTranslation(defaultTemplate);
   const openingTag = "[timelines]\n";
   const closingTag = "\n[/timelines]\n";
-  const fullBlock = `${openingTag}${defaultTemplate}${closingTag}`;
-
   const model =
     toolbarEvent?.model ||
     toolbarEvent?.composer?.model ||
@@ -44,10 +43,21 @@ function insertTimelinesFromToolbar(toolbarEvent) {
     toolbarEvent?.controller ||
     this;
 
+  // Rich text composer: skip applySurround and insert full block directly
+  const isRichText = model && (model.rteEnabled || model.richTextEnabled);
+  if (isRichText) {
+    appendTimelinesViaComposer(
+      model,
+      openingTag,
+      closingTag,
+      defaultTemplate,
+      /* skipApplySurround */ true
+    );
+    return;
+  }
+
   if (toolbarEvent && typeof toolbarEvent.applySurround === "function") {
-    // In rich text mode applySurround expects a translation key; using empty
-    // surround with the full block as fallback content avoids missing-key issues.
-    toolbarEvent.applySurround("", "", fullBlock);
+    toolbarEvent.applySurround(openingTag, closingTag, placeholderKey);
     return;
   }
 
@@ -55,7 +65,8 @@ function insertTimelinesFromToolbar(toolbarEvent) {
     model,
     openingTag,
     closingTag,
-    defaultTemplate
+    defaultTemplate,
+    /* skipApplySurround */ false
   );
 }
 
@@ -82,7 +93,8 @@ function appendTimelinesViaComposer(
   composerController,
   openingTag,
   closingTag,
-  defaultTemplate
+  defaultTemplate,
+  skipApplySurround = false
 ) {
   if (!composerController) {
     return;
@@ -114,7 +126,7 @@ function appendTimelinesViaComposer(
   const insertion = `${openingTag}${content}${closingTag}`;
 
   // Try modern APIs first, then fall back to legacy appendText/setValue
-  if (typeof model.applySurround === "function") {
+  if (!skipApplySurround && typeof model.applySurround === "function") {
     model.applySurround(openingTag, closingTag, defaultTemplate);
     return;
   }
