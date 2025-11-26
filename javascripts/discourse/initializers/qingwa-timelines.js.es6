@@ -36,11 +36,6 @@ function insertTimelinesFromToolbar(toolbarEvent) {
   const openingTag = "[timelines]\n";
   const closingTag = "\n[/timelines]\n";
 
-  if (toolbarEvent && typeof toolbarEvent.applySurround === "function") {
-    toolbarEvent.applySurround(openingTag, closingTag, placeholderKey);
-    return;
-  }
-
   const model =
     toolbarEvent?.model ||
     toolbarEvent?.composer?.model ||
@@ -48,6 +43,17 @@ function insertTimelinesFromToolbar(toolbarEvent) {
     toolbarEvent?.composer ||
     toolbarEvent?.controller ||
     this;
+
+  // Rich text composer: avoid applySurround quirks, insert directly
+  if (model && model.rteEnabled) {
+    appendTimelinesViaComposer(model, openingTag, closingTag, defaultTemplate);
+    return;
+  }
+
+  if (toolbarEvent && typeof toolbarEvent.applySurround === "function") {
+    toolbarEvent.applySurround(openingTag, closingTag, placeholderKey);
+    return;
+  }
 
   appendTimelinesViaComposer(
     model,
