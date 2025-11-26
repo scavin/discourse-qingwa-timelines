@@ -19,38 +19,15 @@ function initializeTimelines(api) {
     $elem.addClass("qingwa-timelines-processed");
   }, { id: "qingwa-timelines" });
 
-  // Add composer toolbar button using composer API (new RTE compatible)
+  // Add composer toolbar button using the same pattern as DiscoTOC (action as function)
   composerApi.addComposerToolbarPopupMenuOption({
-    action: "insertTimelines",
     id: "insert-timelines",
     icon: "clock",
     label: themePrefix("composer_toolbar.insert_button"),
-    perform(toolbarEvent) {
+    action(toolbarEvent) {
       insertTimelinesFromToolbar(toolbarEvent);
     }
   });
-
-  // New editor: register action if available; fallback remains for older environments
-  if (typeof composerApi.addComposerAction === "function") {
-    composerApi.addComposerAction("insertTimelines", insertTimelinesFromToolbar);
-  } else {
-    ensureComposerAction(composerApi);
-  }
-}
-
-function ensureComposerAction(api) {
-  try {
-    const controller =
-      (api?.container && api.container.lookup?.("controller:composer")) || null;
-
-    if (controller && typeof controller.insertTimelines !== "function") {
-      controller.insertTimelines = function(toolbarEvent) {
-        insertTimelinesFromToolbar(toolbarEvent);
-      };
-    }
-  } catch (e) {
-    // Silence lookup errors; toolbar perform handler will still work where available
-  }
 }
 
 function insertTimelinesFromToolbar(toolbarEvent) {
