@@ -31,6 +31,24 @@ function initializeTimelines(api) {
 
   if (typeof api.addComposerAction === "function") {
     api.addComposerAction("insertTimelines", insertTimelinesFromToolbar);
+  } else {
+    // Fallback: attach action directly on composer controller instance
+    ensureComposerAction(api);
+  }
+}
+
+function ensureComposerAction(api) {
+  try {
+    const controller =
+      (api?.container && api.container.lookup?.("controller:composer")) || null;
+
+    if (controller && typeof controller.insertTimelines !== "function") {
+      controller.insertTimelines = function(toolbarEvent) {
+        insertTimelinesFromToolbar(toolbarEvent);
+      };
+    }
+  } catch (e) {
+    // Silence lookup errors; toolbar perform handler will still work where available
   }
 }
 
