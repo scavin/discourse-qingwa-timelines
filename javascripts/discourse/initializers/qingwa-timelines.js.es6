@@ -21,6 +21,7 @@ function initializeTimelines(api) {
 
   // Add composer toolbar button using composer API (new RTE compatible)
   composerApi.addComposerToolbarPopupMenuOption({
+    action: "insertTimelines",
     id: "insert-timelines",
     icon: "clock",
     label: themePrefix("composer_toolbar.insert_button"),
@@ -31,7 +32,7 @@ function initializeTimelines(api) {
 
   // New editor: register action if available; fallback remains for older environments
   if (typeof composerApi.addComposerAction === "function") {
-    composerApi.addComposerAction("insert-timelines", insertTimelinesFromToolbar);
+    composerApi.addComposerAction("insertTimelines", insertTimelinesFromToolbar);
   } else {
     ensureComposerAction(composerApi);
   }
