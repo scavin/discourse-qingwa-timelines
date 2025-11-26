@@ -45,8 +45,15 @@ function insertTimelinesFromToolbar(toolbarEvent) {
     this;
 
   // Rich text composer: avoid applySurround quirks, insert directly
-  if (model && model.rteEnabled) {
-    appendTimelinesViaComposer(model, openingTag, closingTag, defaultTemplate);
+  const isRichText = model && model.rteEnabled;
+  if (isRichText) {
+    appendTimelinesViaComposer(
+      model,
+      openingTag,
+      closingTag,
+      defaultTemplate,
+      /* skipApplySurround */ true
+    );
     return;
   }
 
@@ -102,7 +109,8 @@ function appendTimelinesViaComposer(
   composerController,
   openingTag,
   closingTag,
-  defaultTemplate
+  defaultTemplate,
+  skipApplySurround = false
 ) {
   if (!composerController) {
     return;
@@ -134,7 +142,7 @@ function appendTimelinesViaComposer(
   const insertion = `${openingTag}${content}${closingTag}`;
 
   // Try modern APIs first, then fall back to legacy appendText/setValue
-  if (typeof model.applySurround === "function") {
+  if (!skipApplySurround && typeof model.applySurround === "function") {
     model.applySurround(openingTag, closingTag, defaultTemplate);
     return;
   }
