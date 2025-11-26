@@ -110,12 +110,40 @@ function appendTimelinesViaComposer(
   const content = selectedText || defaultTemplate;
   const insertion = `${openingTag}${content}${closingTag}`;
 
+  // Try modern APIs first, then fall back to legacy appendText/setValue
   if (typeof model.applySurround === "function") {
     model.applySurround(openingTag, closingTag, defaultTemplate);
+    return;
+  }
+
+  if (typeof model.appendText === "function") {
+    model.appendText(insertion, null, { new_line: true });
+    return;
+  }
+
+  if (typeof model.insertText === "function") {
+    model.insertText(insertion);
+    return;
+  }
+
+  if (typeof model.setValue === "function") {
+    const current =
+      typeof model.getValue === "function"
+        ? model.getValue()
+        : model.value || "";
+    model.setValue(`${current}${insertion}`);
+    return;
+  }
+
+  // Last resort: mutate known reply/value properties
+  if ("reply" in model) {
+    model.reply = `${model.reply || ""}${insertion}`;
+  } else if ("value" in model) {
+    model.value = `${model.value || ""}${insertion}`;
   } else {
-    model.appendText(insertion, null, {
-      new_line: true
-    });
+    console.warn(
+      "[qingwa-timelines] Unable to insert timelines: no supported composer methods found"
+    );
   }
 }
 
