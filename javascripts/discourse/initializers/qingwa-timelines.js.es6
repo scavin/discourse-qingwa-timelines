@@ -116,9 +116,13 @@ function appendTimelinesViaComposer(
   const content = selectedText || defaultTemplate;
   const insertion = `${openingTag}${content}${closingTag}`;
 
-  model.appendText(insertion, null, {
-    new_line: true
-  });
+  if (typeof model.applySurround === "function") {
+    model.applySurround(openingTag, closingTag, defaultTemplate);
+  } else {
+    model.appendText(insertion, null, {
+      new_line: true
+    });
+  }
 }
 
 function processTimelinesInElement(element) {
