@@ -37,6 +37,11 @@ function insertTimelinesFromToolbar(toolbarEvent) {
   const openingTag = "[timelines]\n";
   const closingTag = "\n[/timelines]\n";
 
+  if (toolbarEvent && typeof toolbarEvent.applySurround === "function") {
+    toolbarEvent.applySurround(openingTag, closingTag, defaultTemplate);
+    return;
+  }
+
   const model =
     toolbarEvent?.model ||
     toolbarEvent?.composer?.model ||
