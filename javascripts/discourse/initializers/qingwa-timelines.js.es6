@@ -89,6 +89,23 @@ function getDefaultTimelineTemplate() {
   }
 }
 
+function ensurePlaceholderTranslation(defaultTemplate) {
+  const locale =
+    (typeof I18n.currentLocale === "function" && I18n.currentLocale()) ||
+    I18n.locale ||
+    "en";
+
+  I18n.translations[locale] = I18n.translations[locale] || {};
+  I18n.translations[locale].js = I18n.translations[locale].js || {};
+  I18n.translations[locale].js.composer =
+    I18n.translations[locale].js.composer || {};
+
+  const key = "timelines_default_template";
+  I18n.translations[locale].js.composer[key] = defaultTemplate;
+  // applySurround expects a composer.* key (without duplicating the namespace)
+  return key;
+}
+
 function appendTimelinesViaComposer(
   composerController,
   openingTag,
