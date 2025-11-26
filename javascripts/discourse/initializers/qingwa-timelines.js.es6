@@ -53,23 +53,28 @@ function ensureComposerAction(api) {
 }
 
 function insertTimelinesFromToolbar(toolbarEvent) {
-  if (!toolbarEvent) {
-    return;
-  }
-
   const defaultTemplate = I18n.t(
     themePrefix("composer_toolbar.default_template")
   );
   const openingTag = "[timelines]\n";
   const closingTag = "\n[/timelines]\n";
 
-  if (typeof toolbarEvent.applySurround === "function") {
-    toolbarEvent.applySurround(openingTag, closingTag, defaultTemplate);
+  const applySurround =
+    toolbarEvent && typeof toolbarEvent.applySurround === "function"
+      ? toolbarEvent.applySurround
+      : null;
+
+  if (applySurround) {
+    applySurround(openingTag, closingTag, defaultTemplate);
     return;
   }
 
+  const composerContext =
+    (toolbarEvent && (toolbarEvent.composer || toolbarEvent.controller)) ||
+    this;
+
   appendTimelinesViaComposer(
-    toolbarEvent.composer || toolbarEvent.controller,
+    composerContext,
     openingTag,
     closingTag,
     defaultTemplate
@@ -87,9 +92,10 @@ function appendTimelinesViaComposer(
   }
 
   const model =
+    composerController.model ||
     (typeof composerController.get === "function" &&
       composerController.get("model")) ||
-    composerController.model;
+    (typeof composerController.appendText === "function" && composerController);
 
   if (!model || typeof model.appendText !== "function") {
     return;
