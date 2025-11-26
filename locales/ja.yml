@@ -2,7 +2,7 @@ ja:
   composer_toolbar:
     insert_button: "タイムラインを挿入"
     default_template: |
-      ## Heading 1
+      ## One
       Content...
-      ## Heading 2
+      ## Two
       Content...

@@ -2,7 +2,7 @@ zh_CN:
   composer_toolbar:
     insert_button: "插入时间轴"
     default_template: |
-      ## Heading 1
+      ## One
       Content...
-      ## Heading 2
+      ## Two
       Content...

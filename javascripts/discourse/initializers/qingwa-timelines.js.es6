@@ -63,8 +63,8 @@ function getDefaultTimelineTemplate() {
     trimmed.startsWith("[") && trimmed.endsWith("]") && trimmed.includes(".");
 
   if (looksMissing || !trimmed) {
-    // Neutral fallback across locales to avoid showing raw translation keys
-    return "## Heading 1\nContent...\n## Heading 2\nContent...";
+    // Simple neutral fallback across locales
+    return "## One\nContent...\n## Two\nContent...";
   }
 
   return translation;
