@@ -121,9 +121,17 @@ function appendTimelinesViaComposer(
     composerController.model ||
     (typeof composerController.get === "function" &&
       composerController.get("model")) ||
-    (typeof composerController.appendText === "function" && composerController);
+    composerController;
 
-  if (!model || typeof model.appendText !== "function") {
+  const hasAnyInsertMethod =
+    (model && typeof model.appendText === "function") ||
+    typeof model.insertText === "function" ||
+    typeof model.setValue === "function" ||
+    typeof model.applySurround === "function" ||
+    "reply" in model ||
+    "value" in model;
+
+  if (!model || !hasAnyInsertMethod) {
     return;
   }
 
