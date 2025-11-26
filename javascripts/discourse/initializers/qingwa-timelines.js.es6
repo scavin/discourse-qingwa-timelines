@@ -88,7 +88,8 @@ function ensurePlaceholderTranslation(defaultTemplate) {
 
   const key = "insert_timelines_default_template";
   I18n.translations[locale].js.composer[key] = defaultTemplate;
-  return `composer.${key}`;
+  // applySurround expects a composer.* key (without duplicating the namespace)
+  return key;
 }
 
 function appendTimelinesViaComposer(
