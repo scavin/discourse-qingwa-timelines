@@ -19,11 +19,9 @@ function initializeTimelines(api) {
     $elem.addClass("qingwa-timelines-processed");
   }, { id: "qingwa-timelines" });
 
-  // Add composer toolbar button with a named action; handler registered via addComposerAction
-  // themePrefix() generates theme-namespaced translation key
-  // e.g., "theme_translations.137.composer_toolbar.insert_button"
+  // Add composer toolbar button using composer API (new RTE compatible)
   composerApi.addComposerToolbarPopupMenuOption({
-    action: "insertTimelines",
+    id: "insert-timelines",
     icon: "clock",
     label: themePrefix("composer_toolbar.insert_button"),
     perform(toolbarEvent) {
@@ -31,10 +29,10 @@ function initializeTimelines(api) {
     }
   });
 
+  // New editor: register action if available; fallback remains for older environments
   if (typeof composerApi.addComposerAction === "function") {
-    composerApi.addComposerAction("insertTimelines", insertTimelinesFromToolbar);
+    composerApi.addComposerAction("insert-timelines", insertTimelinesFromToolbar);
   } else {
-    // Fallback: attach action directly on composer controller instance
     ensureComposerAction(composerApi);
   }
 }
@@ -61,22 +59,16 @@ function insertTimelinesFromToolbar(toolbarEvent) {
   const openingTag = "[timelines]\n";
   const closingTag = "\n[/timelines]\n";
 
-  const applySurround =
-    toolbarEvent && typeof toolbarEvent.applySurround === "function"
-      ? toolbarEvent.applySurround
-      : null;
-
-  if (applySurround) {
-    applySurround(openingTag, closingTag, defaultTemplate);
-    return;
-  }
-
-  const composerContext =
-    (toolbarEvent && (toolbarEvent.composer || toolbarEvent.controller)) ||
+  const model =
+    toolbarEvent?.model ||
+    toolbarEvent?.composer?.model ||
+    toolbarEvent?.controller?.model ||
+    toolbarEvent?.composer ||
+    toolbarEvent?.controller ||
     this;
 
   appendTimelinesViaComposer(
-    composerContext,
+    model,
     openingTag,
     closingTag,
     defaultTemplate
