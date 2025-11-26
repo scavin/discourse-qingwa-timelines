@@ -32,9 +32,9 @@ function initializeTimelines(api) {
 
 function insertTimelinesFromToolbar(toolbarEvent) {
   const defaultTemplate = getDefaultTimelineTemplate();
-  const placeholderKey = ensurePlaceholderTranslation(defaultTemplate);
   const openingTag = "[timelines]\n";
   const closingTag = "\n[/timelines]\n";
+  const fullBlock = `${openingTag}${defaultTemplate}${closingTag}`;
 
   const model =
     toolbarEvent?.model ||
@@ -45,7 +45,9 @@ function insertTimelinesFromToolbar(toolbarEvent) {
     this;
 
   if (toolbarEvent && typeof toolbarEvent.applySurround === "function") {
-    toolbarEvent.applySurround(openingTag, closingTag, placeholderKey);
+    // In rich text mode applySurround expects a translation key; using empty
+    // surround with the full block as fallback content avoids missing-key issues.
+    toolbarEvent.applySurround("", "", fullBlock);
     return;
   }
 
@@ -74,22 +76,6 @@ function getDefaultTimelineTemplate() {
   } catch (e) {
     return fallback;
   }
-}
-
-function ensurePlaceholderTranslation(defaultTemplate) {
-  const locale =
-    (typeof I18n.currentLocale === "function" && I18n.currentLocale()) ||
-    I18n.locale ||
-    "en";
-  I18n.translations[locale] = I18n.translations[locale] || {};
-  I18n.translations[locale].js = I18n.translations[locale].js || {};
-  I18n.translations[locale].js.composer =
-    I18n.translations[locale].js.composer || {};
-
-  const key = "insert_timelines_default_template";
-  I18n.translations[locale].js.composer[key] = defaultTemplate;
-  // applySurround expects a composer.* key (without duplicating the namespace)
-  return key;
 }
 
 function appendTimelinesViaComposer(
