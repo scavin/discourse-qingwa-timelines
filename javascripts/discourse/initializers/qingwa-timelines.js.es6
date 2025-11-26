@@ -32,11 +32,12 @@ function initializeTimelines(api) {
 
 function insertTimelinesFromToolbar(toolbarEvent) {
   const defaultTemplate = getDefaultTimelineTemplate();
+  const placeholderKey = ensurePlaceholderTranslation(defaultTemplate);
   const openingTag = "[timelines]\n";
   const closingTag = "\n[/timelines]\n";
 
   if (toolbarEvent && typeof toolbarEvent.applySurround === "function") {
-    toolbarEvent.applySurround(openingTag, closingTag, defaultTemplate);
+    toolbarEvent.applySurround(openingTag, closingTag, placeholderKey);
     return;
   }
 
@@ -61,24 +62,33 @@ function getDefaultTimelineTemplate() {
 
   try {
     const translation = I18n.t(themePrefix("composer_toolbar.default_template"));
-    if (typeof translation !== "string") {
-      return fallback;
-    }
-
-    const trimmed = translation.trim();
+    const trimmed = typeof translation === "string" ? translation.trim() : "";
     if (!trimmed) {
       return fallback;
     }
-
     const looksMissing =
       /^\[.*\]$/s.test(trimmed) ||
       /translation missing/i.test(trimmed) ||
       trimmed.includes("composer_toolbar.default_template");
-
     return looksMissing ? fallback : translation;
   } catch (e) {
     return fallback;
   }
+}
+
+function ensurePlaceholderTranslation(defaultTemplate) {
+  const locale =
+    (typeof I18n.currentLocale === "function" && I18n.currentLocale()) ||
+    I18n.locale ||
+    "en";
+  I18n.translations[locale] = I18n.translations[locale] || {};
+  I18n.translations[locale].js = I18n.translations[locale].js || {};
+  I18n.translations[locale].js.composer =
+    I18n.translations[locale].js.composer || {};
+
+  const key = "insert_timelines_default_template";
+  I18n.translations[locale].js.composer[key] = defaultTemplate;
+  return `composer.${key}`;
 }
 
 function appendTimelinesViaComposer(
