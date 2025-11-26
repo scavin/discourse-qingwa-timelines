@@ -23,7 +23,10 @@ function initializeTimelines(api) {
   api.addComposerToolbarPopupMenuOption({
     action: "insertTimelines",
     icon: "clock",
-    label: themePrefix("composer_toolbar.insert_button")
+    label: themePrefix("composer_toolbar.insert_button"),
+    perform(toolbarEvent) {
+      insertTimelinesFromToolbar(toolbarEvent);
+    }
   });
 
   if (typeof api.addComposerAction === "function") {
