@@ -61,7 +61,7 @@
     }
   }
 
-  // no-TOC variant uses divs to avoid heading detection
+  // Pseudo headings rendered as divs (##! / ###!) to avoid DiscoTOC
   .qingwa-timeline-heading {
     display: block;
     margin-top: 0.5em;
@@ -71,21 +71,6 @@
 
   .qingwa-timeline-heading.h2 {
     @extend h2;
-  }
-
-  .qingwa-timeline-heading.h2::before {
-    content: '';
-    position: absolute;
-    left: calc(-2em + 5px);
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: $timeline_dot_color;
-    border: 2px solid #fff;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-    z-index: 1;
   }
 
   // H3 headings with lighter color
@@ -112,19 +97,6 @@
 
   .qingwa-timeline-heading.h3 {
     @extend h3;
-  }
-
-  .qingwa-timeline-heading.h3::before {
-    content: '';
-    position: absolute;
-    left: calc(-2em + 3px);
-    top: 50%;
-    transform: translateY(-50%);
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: $timeline_dot_color;
-    z-index: 1;
   }
 
   p {

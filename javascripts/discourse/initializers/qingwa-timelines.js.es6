@@ -207,20 +207,10 @@ function processTimelinesInElement(element) {
       return;
     }
 
-    // Process [timelines]...[/timelines] blocks with optional flags
-    // e.g., [timelines notoc] disables heading tags to avoid DiscoTOC pickup
-    const timelinesRegex = /\[timelines(?:\s+([^\]]+))?\]([\s\S]*?)\[\/timelines\]/g;
-    html = html.replace(timelinesRegex, (match, flags = "", content) => {
-      const normalizedFlags = flags
-        .split(/\s+/)
-        .map(f => f.toLowerCase())
-        .filter(Boolean);
-      const noToc = normalizedFlags.includes("notoc");
-      const classes = ["qingwa-timelines"];
-      if (noToc) {
-        classes.push("qingwa-timelines-notoc");
-      }
-      return `<div class="${classes.join(" ")}">${content.trim()}</div>`;
+    // Process [timelines]...[/timelines] blocks
+    const timelinesRegex = /\[timelines\]([\s\S]*?)\[\/timelines\]/g;
+    html = html.replace(timelinesRegex, (match, content) => {
+      return '<div class="qingwa-timelines">' + content.trim() + '</div>';
     });
 
     // Only update if changes were made
@@ -293,19 +283,6 @@ function processTimelinesInElement(element) {
           } else if (node.nodeType === Node.ELEMENT_NODE && node.parentNode) {
             node.parentNode.replaceChild(replacement, node);
           }
-        });
-      });
-
-      // For timelines marked notoc, replace headings with divs to avoid TOC capture
-      const noTocContainers = temp.querySelectorAll('.qingwa-timelines-notoc');
-      noTocContainers.forEach(container => {
-        const headings = container.querySelectorAll('h1,h2,h3,h4,h5,h6');
-        headings.forEach(heading => {
-          const replacement = document.createElement('div');
-          const levelClass = heading.tagName.toLowerCase();
-          replacement.className = `qingwa-timeline-heading ${levelClass}`;
-          replacement.innerHTML = heading.innerHTML;
-          heading.parentNode.replaceChild(replacement, heading);
         });
       });
 
