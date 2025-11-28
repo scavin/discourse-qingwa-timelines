@@ -64,9 +64,10 @@
   // Pseudo headings rendered as divs (##! / ###!) to avoid DiscoTOC
   .qingwa-timeline-heading {
     display: block;
-    margin-top: 0.5em;
+    margin-top: 2.5em;
     margin-bottom: 1em;
     line-height: 1.4;
+    letter-spacing: 0.3px;
   }
 
   .qingwa-timeline-heading.h2 {
