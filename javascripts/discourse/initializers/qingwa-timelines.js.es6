@@ -267,7 +267,9 @@ function processTimelinesInElement(element) {
             return;
           }
 
-          const match = rawText.trim().match(/^(#{2,3})!\s*(.*)$/);
+          const lines = rawText.split(/\r?\n/);
+          const firstLine = lines[0].trim();
+          const match = firstLine.match(/^(#{2,3})!\s*(.*)$/);
           if (!match) {
             return;
           }
@@ -278,10 +280,18 @@ function processTimelinesInElement(element) {
           replacement.className = `qingwa-timeline-heading h${level}`;
           replacement.textContent = headingText;
 
-          if (node.nodeType === Node.TEXT_NODE && node.parentNode) {
+          const remainingText = lines.slice(1).join('\n').trim();
+          const restNode =
+            remainingText && node.ownerDocument.createElement('p');
+          if (restNode) {
+            restNode.textContent = remainingText;
+          }
+
+          if (node.parentNode) {
             node.parentNode.replaceChild(replacement, node);
-          } else if (node.nodeType === Node.ELEMENT_NODE && node.parentNode) {
-            node.parentNode.replaceChild(replacement, node);
+            if (restNode) {
+              replacement.parentNode.insertBefore(restNode, replacement.nextSibling);
+            }
           }
         });
       });
