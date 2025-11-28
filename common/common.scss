@@ -61,6 +61,18 @@
     }
   }
 
+  // Pseudo headings rendered as divs (##! / ###!) to avoid DiscoTOC
+  .qingwa-timeline-heading {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    line-height: 1.4;
+  }
+
+  .qingwa-timeline-heading.h2 {
+    @extend h2;
+  }
+
   // H3 headings with lighter color
   h3 {
     position: relative;
@@ -81,6 +93,10 @@
       background: $timeline_dot_color;
       z-index: 1;
     }
+  }
+
+  .qingwa-timeline-heading.h3 {
+    @extend h3;
   }
 
   p {
