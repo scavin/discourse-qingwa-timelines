@@ -259,6 +259,43 @@ function processTimelinesInElement(element) {
         }
       });
 
+      // Convert custom pseudo-headings inside timelines:
+      // Lines starting with "##!" -> styled as H2, "###!" -> styled as H3
+      const timelineContainers = temp.querySelectorAll('.qingwa-timelines');
+      timelineContainers.forEach(container => {
+        const nodes = Array.from(container.childNodes);
+        nodes.forEach(node => {
+          // Only handle element or text nodes
+          const rawText =
+            node.nodeType === Node.TEXT_NODE
+              ? node.textContent
+              : node.nodeType === Node.ELEMENT_NODE
+                ? node.textContent
+                : "";
+
+          if (!rawText) {
+            return;
+          }
+
+          const match = rawText.trim().match(/^(#{2,3})!\s*(.*)$/);
+          if (!match) {
+            return;
+          }
+
+          const level = match[1].length;
+          const headingText = match[2] || "";
+          const replacement = document.createElement('div');
+          replacement.className = `qingwa-timeline-heading h${level}`;
+          replacement.textContent = headingText;
+
+          if (node.nodeType === Node.TEXT_NODE && node.parentNode) {
+            node.parentNode.replaceChild(replacement, node);
+          } else if (node.nodeType === Node.ELEMENT_NODE && node.parentNode) {
+            node.parentNode.replaceChild(replacement, node);
+          }
+        });
+      });
+
       // For timelines marked notoc, replace headings with divs to avoid TOC capture
       const noTocContainers = temp.querySelectorAll('.qingwa-timelines-notoc');
       noTocContainers.forEach(container => {
