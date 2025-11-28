@@ -269,15 +269,13 @@ function processTimelinesInElement(element) {
 
           const lines = rawText.split(/\r?\n/);
           const firstLine = lines[0].trim();
-          const match = firstLine.match(
-            /^(#{2,3})!\s*(.*)$|^!(#{2,3})\s*(.*)$/
-          );
+          const match = firstLine.match(/^(#{2,3})!\s*(.*)$/);
           if (!match) {
             return;
           }
 
-          const level = (match[1] || match[3]).length;
-          const headingText = match[2] || match[4] || "";
+          const level = match[1].length;
+          const headingText = match[2] || "";
           const replacement = document.createElement('div');
           replacement.className = `qingwa-timeline-heading h${level}`;
           replacement.textContent = headingText;
