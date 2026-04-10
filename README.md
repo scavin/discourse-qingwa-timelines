@@ -218,7 +218,7 @@ discourse-qingwa-timelines/
 ├── javascripts/
 │   └── discourse/
 │       └── initializers/
-│           └── qingwa-timelines.js.es6
+│           └── qingwa-timelines.js
 ├── common/
 │   └── common.scss
 ├── locales/

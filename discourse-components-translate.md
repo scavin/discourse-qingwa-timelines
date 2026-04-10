@@ -152,7 +152,7 @@ my-theme-component/
 └── javascripts/
     └── discourse/
         └── initializers/
-            └── my-component.js.es6
+            └── my-component.js
 ```
 
 ### 翻译文件示例
@@ -189,7 +189,7 @@ de:
 
 ### JavaScript 代码示例
 
-**javascripts/discourse/initializers/my-component.js.es6**:
+**javascripts/discourse/initializers/my-component.js**:
 ```javascript
 import { withPluginApi } from "discourse/lib/plugin-api";
 
